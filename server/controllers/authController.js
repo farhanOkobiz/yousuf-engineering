@@ -28,7 +28,7 @@ exports.singupController = catchAsync(async (req, res) => {
   user.verificationTokenExpires = Date.now() + 10 * 24 * 60 * 60 * 1000; // Token valid for 10 days
   await user.save({ validateBeforeSave: false });
 
-  const url = `http://agroinfusion.com/verify?token=${verificationToken}`;
+  const url = `http://localhost:5173/verify?token=${verificationToken}`;
   await new Email(user, url).sendWelcome();
 
   createSendToken(user, 201, res);
@@ -74,16 +74,21 @@ exports.verifyUserController = catchAsync(async (req, res, next) => {
 // });
 
 exports.loginController = catchAsync(async (req, res, next) => {
+
   const { emailOrPhone, password } = req.body;
 
   if (!emailOrPhone || !password) {
     return next(new AppError("Please provide email/phone and password!", 400));
   }
 
+  console.log(emailOrPhone, password, "ok2");
+
   // Find user by email or phone number
   const user = await User.findOne({
     $or: [{ email: emailOrPhone }, { phone: emailOrPhone }],
   }).select("+password");
+
+  console.log(emailOrPhone, password, "ok3");
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Incorrect email/phone or password", 401));

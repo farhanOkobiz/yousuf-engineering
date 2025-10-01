@@ -62,6 +62,7 @@ const Shop = () => {
       console.error(error.message);
     }
   };
+
   const getBrand = async () => {
     try {
       const response = await api.get(`/brand`);
@@ -253,7 +254,7 @@ const Shop = () => {
                   )}
                 </div>
 
-                <PriceRange />
+                {/* <PriceRange /> */}
               </div>
             </div>
 

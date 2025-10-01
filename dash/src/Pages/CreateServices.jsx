@@ -225,13 +225,13 @@ const Services = () => {
             <ReactQuill />
           </Form.Item>
 
-          <Form.Item
+          {/* <Form.Item
             label="Icon (HTML)"
             name="icon"
             rules={[{ required: false, message: "Please input the icon!" }]}
           >
             <Input placeholder="Enter HTML icon (e.g. <i class='fa-solid fa-hippo'></i>)" />
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item label="Upload Photo">
             <Upload

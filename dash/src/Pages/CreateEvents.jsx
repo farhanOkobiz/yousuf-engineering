@@ -31,6 +31,20 @@ const Events = () => {
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false); // Loading state for the OK button
+  // youtubeVideo
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState("");
+
+  const openVideoModal = (link) => {
+    let videoId = "";
+    if (link.includes("youtu.be")) {
+      videoId = link.split("youtu.be/")[1].split("?")[0];
+    } else if (link.includes("watch?v=")) {
+      videoId = link.split("watch?v=")[1].split("&")[0];
+    }
+    setCurrentVideo(`https://www.youtube.com/embed/${videoId}`);
+    setIsModalOpen1(true);
+  };
 
   // Fetch events
   const fetchEvents = async () => {
@@ -54,6 +68,7 @@ const Events = () => {
     setConfirmLoading(true);
     const formData = new FormData();
     formData.append("heading", values.heading);
+    formData.append("youtubeVideo", values.youtubeVideo);
     // formData.append("details", values.details);
     // formData.append("location", values.location);
     // formData.append("startingDate", values.dates[0].toISOString());
@@ -113,21 +128,57 @@ const Events = () => {
 
   const columns = [
     {
-      title: "Photo",
-      dataIndex: "photo",
-      key: "photo",
-      render: (photo) => (
-        <img
-          src={photo}
-          alt="Event"
-          style={{ width: 100, height: 100, objectFit: "cover" }}
-        />
-      ),
-    },
-    {
       title: "Heading",
       dataIndex: "heading",
       key: "heading",
+    },
+    {
+      title: "Photo",
+      dataIndex: "photo",
+      key: "photo",
+      render: (photo) =>
+        photo ? (
+          <img
+            src={photo}
+            alt="Event"
+            style={{ width: 100, height: 100, objectFit: "cover" }}
+          />
+        ) : (
+          <span>No Photo</span>
+        ),
+    },
+    {
+      title: "YouTube Video",
+      dataIndex: "youtubeVideo",
+      key: "youtubeVideo",
+      render: (link) => {
+        if (!link || link === "undefined") return <span>No Video</span>;
+
+        let videoId = "";
+        if (link.includes("youtu.be")) {
+          videoId = link.split("youtu.be/")[1].split("?")[0];
+        } else if (link.includes("watch?v=")) {
+          videoId = link.split("watch?v=")[1].split("&")[0];
+        }
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+        return (
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => openVideoModal(link)}
+          >
+            <iframe
+              width="160"
+              height="100"
+              src={embedUrl}
+              title="YouTube Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        );
+      },
     },
     {
       title: "Actions",
@@ -174,7 +225,11 @@ const Events = () => {
       />
 
       <Modal
-        title={editingEvent ? "Edit Photo" : "Add Photo"}
+        title={
+          editingEvent
+            ? "Edit Photo And YouTube Video"
+            : "Add Photo And YouTube Video"
+        }
         visible={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         onOk={() => form.submit()}
@@ -189,11 +244,15 @@ const Events = () => {
           }}
         >
           <Form.Item
-            label="Photo Heading"
+            label="Heading"
             name="heading"
             // rules={[{ required: true, message: "Please input the heading!" }]}
           >
             <Input placeholder="Enter photo heading" />
+          </Form.Item>
+
+          <Form.Item label="YouTube Video" name="youtubeVideo">
+            <Input placeholder="Paste YouTube video URL" />
           </Form.Item>
 
           <Form.Item label="Upload Photo">
@@ -207,6 +266,22 @@ const Events = () => {
             </Upload>
           </Form.Item>
         </Form>
+      </Modal>
+      <Modal
+        visible={isModalOpen}
+        footer={null}
+        onCancel={() => setIsModalOpen1(false)}
+        width={800} 
+      >
+        <iframe
+          width="100%"
+          height="450"
+          src={currentVideo}
+          title="YouTube Video"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       </Modal>
     </div>
   );

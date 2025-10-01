@@ -19,7 +19,14 @@ exports.createProductController = catchAsync(async (req, res, next) => {
       )
     );
   }
-  console.log("This is body", body)
+  // ===== SAFE PRICE HANDLING =====
+  let priceValue = body.price;
+  if (!priceValue || priceValue === "" || priceValue === "undefined") {
+    priceValue = undefined;
+  } else {
+    priceValue = Number(priceValue);
+  }
+  body.price = priceValue;
   // kkk
   try {
     body.slug = slug;

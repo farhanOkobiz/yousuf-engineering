@@ -100,7 +100,7 @@ const userSchema = new Schema(
         },
         message: "Space is not allowed in password",
       },
-      minLength: [8, "Minimum password length is 8 character"],
+      minLength: [6, "Minimum password length is 8 character"],
       maxLength: [25, "Maximum password length is 25 character"],
       select: false,
     },

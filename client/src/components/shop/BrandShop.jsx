@@ -338,6 +338,7 @@ const BrandShop = () => {
   const toggleDrawer = () => {
     setShopDrawerOpen((prevState) => !prevState);
   };
+  
 
   return (
     <>

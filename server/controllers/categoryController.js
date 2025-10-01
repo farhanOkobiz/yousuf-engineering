@@ -27,7 +27,7 @@ exports.createCategoryController = catchAsync(async (req, res, next) => {
   });
 
   console.log(existingCategory, "existing category ==================>");
-  console.log("category controller___________________")
+  console.log("category controller___________________");
 
   if (existingCategory) {
     res.status(400).json({
@@ -107,10 +107,10 @@ exports.getAllProductsOfCategory = catchAsync(async (req, res, next) => {
   if (!category) {
     return next(new AppError("No category was found with that name!", 404));
   }
-  console.log(category, "category ============");
 
-  const query = Product.find({ category: category._id });
+  const products = await Product.find({ category: category._id });
   // const query = Product.find({ _id: { $in: category.products } });
+
   const count = await Product.countDocuments({
     category: category._id,
   });
@@ -118,14 +118,14 @@ exports.getAllProductsOfCategory = catchAsync(async (req, res, next) => {
   //   _id: { $in: category.products },
   // });
 
-  const features = new APIFeatures(query, req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
+  // const features = new APIFeatures(query, req.query)
+  //   .filter()
+  //   .sort()
+  //   .limitFields()
+  //   .paginate();
 
-  const products = await features.query;
-  console.log(products, "products__________");
+  // const products = await features.query;
+  // console.log(products, "products__________");
 
   res.status(200).json({
     status: "success",

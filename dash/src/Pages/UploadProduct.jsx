@@ -361,13 +361,7 @@ const Products = () => {
           >
             <Input />
           </Form.Item> */}
-          <Form.Item
-            name="price"
-            label="Price"
-            rules={[
-              { required: true, message: "Please enter the product price" },
-            ]}
-          >
+          <Form.Item name="price" label="Price" rules={[]}>
             <Input type="number" />
           </Form.Item>
           {/* <Form.Item

@@ -135,10 +135,19 @@ const MainLayout = () => {
     case "13":
       content = <CreateEvents />;
       break;
+    case "13-1":
+      content = (
+        <div className="p-10 text-xl font-bold">📷 Image Gallery Page</div>
+      );
+      break;
+    case "13-2":
+      content = (
+        <div className="p-10 text-xl font-bold">🎥 Video Gallery Page</div>
+      );
+      break;
     case "14":
       content = <AllEvents />;
       break;
-
     case "15":
       content = <CreatePartners />;
       break;
@@ -163,17 +172,17 @@ const MainLayout = () => {
   }
 
   let items = [
-    getItem(" All Users", "1", <UserOutlined />),
-
-    getItem(" Orders", "2", <CiShop />),
-    getItem(" Brand", "3", <CiShoppingTag />),
-    getItem(" Category", "4", <BiCategory />),
-    getItem(" Product", "5", <UploadOutlined />),
-    getItem(" Services", "11", <RiCustomerService2Line />),
-
-    getItem(" Gallery", "13", <MdEmojiEvents />),
-
-    getItem(" Partners", "15", <FaUserFriends />),
+    getItem("All Users", "1", <UserOutlined />),
+    getItem("Orders", "2", <CiShop />),
+    getItem("Brand", "3", <CiShoppingTag />),
+    getItem("Category", "4", <BiCategory />),
+    getItem("Product", "5", <UploadOutlined />),
+    getItem("Services", "11", <RiCustomerService2Line />),
+    getItem("Gallery", "13", <MdEmojiEvents />, [
+      getItem("Image", "13-1", <UploadOutlined />),
+      getItem("Video", "13-2", <UploadOutlined />),
+    ]),
+    getItem("Partners", "15", <FaUserFriends />),
     getItem("All Contact", "17", <MdContacts />),
     getItem("ADD Banner", "18", <GiKnightBanner />),
   ];
@@ -185,6 +194,7 @@ const MainLayout = () => {
     message.success("You have been logged out!");
     navigate("/");
   };
+
   return (
     <Layout hasSider>
       {!hideLayout && (

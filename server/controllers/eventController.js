@@ -15,39 +15,34 @@ exports.createEventController = catchAsync(async (req, res, next) => {
   const body = { ...req.body };
   const { startingDate, endingDate } = body;
 
-  if (req.body.photo && req.body.photo.length > 0) {
-    const publicId = req.body.publicId;
-    body.photo = req.body.photo;
+  const publicId = req.body.publicId;
+  body.photo = req.body.photo;
+  body.youtubeVideo = req.body.youtubeVideo;
 
-    if (
-      startingDate &&
-      endingDate &&
-      new Date(startingDate) > new Date(endingDate)
-    ) {
-      await deleteUploadedImages([publicId]);
-      return next(
-        new AppError("Starting date cannot be later than the ending date", 400)
-      );
-    }
-
-    try {
-      const event = await Event.create(body);
-
-      return res.status(201).json({
-        status: "success",
-        message: "Event has been created successfully",
-        data: {
-          event,
-        },
-      });
-    } catch (error) {
-      await deleteUploadedImages([publicId]);
-      return next(error);
-    }
-  } else {
+  if (
+    startingDate &&
+    endingDate &&
+    new Date(startingDate) > new Date(endingDate)
+  ) {
+    await deleteUploadedImages([publicId]);
     return next(
-      new AppError("No photos uploaded, Please upload at least one photo", 400)
+      new AppError("Starting date cannot be later than the ending date", 400)
     );
+  }
+
+  try {
+    const event = await Event.create(body);
+
+    return res.status(201).json({
+      status: "success",
+      message: "Event has been created successfully",
+      data: {
+        event,
+      },
+    });
+  } catch (error) {
+    await deleteUploadedImages([publicId]);
+    return next(error);
   }
 });
 

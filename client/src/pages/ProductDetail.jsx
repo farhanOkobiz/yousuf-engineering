@@ -119,7 +119,6 @@ const ProductDetail = () => {
     const selectedOption = selectedColor?.options.find(
       (option) => option.size === selectedSize
     );
-
     const item = {
       ...data,
       id,

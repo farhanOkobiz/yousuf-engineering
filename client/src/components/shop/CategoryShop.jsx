@@ -46,13 +46,12 @@ const CategoryShop = () => {
 
   // console.log(location);
   const lastSlug = location.pathname.split("/").pop();
-
+   console.log("last slug === ", lastSlug)
   // console.log("lastSlug", lastSlug);
   // Fetch products function
   const fetchProducts = async (page, limit) => {
     try {
       let sort = "";
-
       // Determine the sort parameter based on the selected sortOption
       if (sortOption === "lowToHigh") {
         sort = "price"; // Ascending order of price
@@ -68,6 +67,7 @@ const CategoryShop = () => {
           sort,
         },
       });
+      console.log("response === ", response.data)
       setTotalProducts(response.data.totalData); // Update total products
       return response.data.data.products;
     } catch (error) {

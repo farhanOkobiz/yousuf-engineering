@@ -5,10 +5,14 @@ const eventSchema = new Schema(
   {
     photo: {
       type: String,
-      required: [true, "Photo is required"],
+      required: false,
       trim: true,
     },
-
+     youtubeVideo: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     heading: {
       type: String,
       // required: [true, "Heading is required"],

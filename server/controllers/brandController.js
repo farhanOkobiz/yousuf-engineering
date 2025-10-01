@@ -126,16 +126,16 @@ exports.getAllProductsOfBrand = catchAsync(async (req, res, next) => {
     return next(new AppError("No brand was found with that name!", 404));
   }
 
-  const query = Product.find({ brand: brand._id });
+  const products = await Product.find({ brand: brand._id });
   const count = await Product.countDocuments({ brand: brand._id });
 
-  const features = new APIFeatures(query, req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
+  // const features = new APIFeatures(query, req.query)
+  //   .filter()
+  //   .sort()
+  //   .limitFields()
+  //   .paginate();
 
-  const products = await features.query;
+  // const products = await features.query;
 
   res.status(200).json({
     status: "success",
