@@ -16,6 +16,7 @@ import "swiper/css/pagination";
 // import ProductGridShopPage from "../components/shop/ProductGridShopPage";
 import api from "../components/axios/Axios";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import ProductList from "../components/shop/ProductList";
 // import PriceRange from "../components/shop/PriceRange";
 // import { FaFilter } from "react-icons/fa6";
 
@@ -90,7 +91,7 @@ const Shop = () => {
     getBrand();
     getProducts();
   }, []);
-
+    
   // const handlePrev = () => {
   //   if (swiperRef.current) {
   //     swiperRef.current.swiper.slidePrev();
@@ -270,12 +271,21 @@ const Shop = () => {
                 {/* <PriceRange /> */}
               </div>
             </div>
-
             <div className="col-span-12 lg:col-span-9 sm:col-span-12">
+              <div className="bg-white w-full">
+                {isCategoryPath || isBrandPath ? (
+                  <Outlet />
+                ) : (
+                  <ProductList products={products.doc} isLoading={isLoading} />
+                )}
+              </div>
+            </div>
+
+            {/* <div className="col-span-12 lg:col-span-9 sm:col-span-12">
               <div className="bg-white w-full">
                 <Outlet />
               </div>
-            </div>
+            </div> */}
           </div>
         </Containar>
       </div>
