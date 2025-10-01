@@ -28,7 +28,7 @@ const Partner = () => {
 
   return (
     <>
-      {/* <Containar> */}
+      <Containar>
       <div className="font-robo">
         {loading ? (
           <div>
@@ -50,7 +50,7 @@ const Partner = () => {
                     {partners?.doc?.map((item, index) => (
                       <div
                         key={index}
-                        className="flex-shrink-0 w-28 h-28 bg-white shadow-lg flex justify-center items-center mx-5 overflow-hidden p-1 border-2 border-gray-200"
+                        className="flex-shrink-0 w-28 h-28 md:w-40 md:h-40 bg-white shadow-lg flex justify-center items-center mx-5 overflow-hidden p-1 border-2 border-gray-200"
                       >
                         <Link className="w-full h-full" to={"/"}>
                           <img
@@ -81,7 +81,7 @@ const Partner = () => {
           </>
         )}
       </div>
-      {/* </Containar> */}
+      </Containar>
     </>
   );
 };

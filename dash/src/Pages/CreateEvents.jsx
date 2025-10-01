@@ -31,20 +31,6 @@ const Events = () => {
   const [fileList, setFileList] = useState([]);
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false); // Loading state for the OK button
-  // youtubeVideo
-  const [isModalOpen1, setIsModalOpen1] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState("");
-
-  const openVideoModal = (link) => {
-    let videoId = "";
-    if (link.includes("youtu.be")) {
-      videoId = link.split("youtu.be/")[1].split("?")[0];
-    } else if (link.includes("watch?v=")) {
-      videoId = link.split("watch?v=")[1].split("&")[0];
-    }
-    setCurrentVideo(`https://www.youtube.com/embed/${videoId}`);
-    setIsModalOpen1(true);
-  };
 
   // Fetch events
   const fetchEvents = async () => {
@@ -120,6 +106,7 @@ const Events = () => {
       heading: event.heading,
       details: event.details,
       location: event.location,
+      youtubeVideo: event.youtubeVideo,
       dates: [moment(event.startingDate), moment(event.endingDate)],
     });
     setFileList([{ url: event.photo, name: "Existing Image" }]);
@@ -154,19 +141,21 @@ const Events = () => {
       render: (link) => {
         if (!link || link === "undefined") return <span>No Video</span>;
 
-        let videoId = "";
-        if (link.includes("youtu.be")) {
-          videoId = link.split("youtu.be/")[1].split("?")[0];
-        } else if (link.includes("watch?v=")) {
-          videoId = link.split("watch?v=")[1].split("&")[0];
-        }
+        const extractYouTubeId = (url) => {
+          if (!url || typeof url !== "string") return null;
+          const regex =
+            /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+          const match = url.match(regex);
+          return match ? match[1] : null;
+        };
+
+        const videoId = extractYouTubeId(link);
+        if (!videoId) return <span>Invalid Video URL</span>;
+
         const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
         return (
-          <div
-            style={{ cursor: "pointer" }}
-            onClick={() => openVideoModal(link)}
-          >
+          <div style={{ cursor: "pointer" }}>
             <iframe
               width="160"
               height="100"
@@ -184,7 +173,15 @@ const Events = () => {
       title: "Actions",
       key: "actions",
       render: (_, record) => (
-        <>
+        <div className="flex gap-2">
+          {/* Edit Button */}
+          <Button
+            icon={<EditOutlined />}
+            type="primary"
+            onClick={() => openEditModal(record)}
+          />
+
+          {/* Delete Button */}
           <Popconfirm
             title="Are you sure to delete?"
             onConfirm={() => handleDelete(record._id)}
@@ -193,7 +190,7 @@ const Events = () => {
           >
             <Button icon={<DeleteOutlined />} danger />
           </Popconfirm>
-        </>
+        </div>
       ),
     },
   ];
@@ -266,22 +263,6 @@ const Events = () => {
             </Upload>
           </Form.Item>
         </Form>
-      </Modal>
-      <Modal
-        visible={isModalOpen}
-        footer={null}
-        onCancel={() => setIsModalOpen1(false)}
-        width={800} 
-      >
-        <iframe
-          width="100%"
-          height="450"
-          src={currentVideo}
-          title="YouTube Video"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
       </Modal>
     </div>
   );

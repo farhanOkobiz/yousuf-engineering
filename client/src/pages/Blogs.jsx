@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import BradCumbs from "../components/shared/BradCumbs";
 import mixitup from "mixitup";
 import api from "../components/axios/Axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -15,7 +15,7 @@ const Blogs = () => {
   const [activeFilter, setActiveFilter] = useState("*");
   const containerRef = useRef(null);
   const [uniqueCategories, setUniqueCategories] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, ] = useState(1);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -53,7 +53,8 @@ const Blogs = () => {
       setBlogs(formattedBlogs);
       setLoading(false);
     } catch (error) {
-      setError(error.message);
+      console.error(error)
+      // setError(error.message);
       setLoading(false);
     }
   };

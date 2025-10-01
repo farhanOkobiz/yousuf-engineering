@@ -1,8 +1,8 @@
 import {
   FaEnvelope,
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
+  // FaFacebook,
+  // FaInstagram,
+  // FaLinkedin,
   FaPhoneAlt,
   FaYoutube,
   FaTelegram,
@@ -31,6 +31,10 @@ export const menulist = [
   {
     title: "About",
     link: "/about",
+  },
+   {
+    title: "Blog",
+    link: "/blogs",
   },
   {
     title: "Contact Us",

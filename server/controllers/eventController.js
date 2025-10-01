@@ -52,7 +52,7 @@ exports.getEventController = getOne(Event);
 
 exports.updateEventController = catchAsync(async (req, res, next) => {
   const { id } = req.params;
-  const { photo, startingDate, endingDate } = req.body;
+  const { heading, photo, youtubeVideo, startingDate, endingDate } = req.body;
 
   const event = await Event.findById(id);
   if (!event) return next(new AppError("Event was not found!", 404));
@@ -62,7 +62,7 @@ exports.updateEventController = catchAsync(async (req, res, next) => {
     const publicId = extractPublicIdFromUrl(event.photo);
     try {
       await deleteUploadedImages([publicId]);
-    } catch (error) {
+    } catch {
       return next(
         new AppError("Failed to delete the old image from Cloudinary", 500)
       );
@@ -73,7 +73,9 @@ exports.updateEventController = catchAsync(async (req, res, next) => {
     id,
     {
       ...req.body,
+      heading: heading || event.heading,
       photo: photo || event.photo,
+      youtubeVideo: youtubeVideo || event.youtubeVideo,
       startingDate: startingDate || event.startingDate,
       endingDate: endingDate || event.endingDate,
     },

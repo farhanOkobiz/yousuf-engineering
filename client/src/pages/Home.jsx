@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+
 import Partner from "../components/home/Partner";
 import Product from "../components/home/Product";
 import Banner from "../components/home/Banner";
 import Event from "../components/home/Event";
 import Service from "../components/home/Service";
+import WhyChooseUs from "./WhyChooseUs";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Service />
       <Product />
       <Event />
+      <WhyChooseUs/>
       <Partner />
     </>
   );

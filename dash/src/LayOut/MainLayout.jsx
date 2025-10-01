@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
-  FileOutlined,
-  TeamOutlined,
+  // FileOutlined,
+  // TeamOutlined,
 } from "@ant-design/icons";
 import { IoMdLogOut } from "react-icons/io";
 
 import { Button, Layout, Menu, theme, message } from "antd";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import Home from "../Pages/DashBoardHome";
 import Order from "../Pages/Order";
-import { Input, Space } from "antd";
+// import { Input } from "antd";
 import UploadBanner from "../Pages/UploadBanner";
 import AddCategory from "../Pages/Category";
 import UploadProduct from "../Pages/UploadProduct";
 import AllProduct from "../Pages/AllProduct";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import logoImage from "../../src/assets/logo.png";
 import CreateBlog from "../Pages/CreateBlog";
 import AllBlog from "../Pages/AllBlog";
@@ -32,20 +32,20 @@ import CreatePartners from "../Pages/CreatePartners";
 import AllPartners from "../Pages/AllPartners";
 import AllContact from "../Pages/AllContact";
 import Discount from "../Pages/Discount";
-import { activeUser, logoutUser } from "../Slices/userSlices";
+import {  logoutUser } from "../Slices/userSlices";
 import { MdEmojiEvents } from "react-icons/md";
 import { CiShop, CiShoppingTag } from "react-icons/ci";
 import { BiCategory } from "react-icons/bi";
-import { FaBlogger } from "react-icons/fa";
-import { LiaHistorySolid } from "react-icons/lia";
+// import { FaBlogger } from "react-icons/fa";
+// import { LiaHistorySolid } from "react-icons/lia";
 import { RiCustomerService2Line } from "react-icons/ri";
 import { FaUserFriends } from "react-icons/fa";
 import { MdContacts } from "react-icons/md";
 import { GiKnightBanner } from "react-icons/gi";
-import { RiDiscountPercentFill } from "react-icons/ri";
+// import { RiDiscountPercentFill } from "react-icons/ri";
 import Brand from "../Pages/Brand";
 
-const { Search } = Input;
+// const { Search } = Input;
 const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
@@ -120,6 +120,7 @@ const MainLayout = () => {
     case "8":
       content = <AllBlog />;
       break;
+    
     case "9":
       content = <CreateStories />;
       break;
@@ -135,22 +136,14 @@ const MainLayout = () => {
     case "13":
       content = <CreateEvents />;
       break;
-    case "13-1":
-      content = (
-        <div className="p-10 text-xl font-bold">📷 Image Gallery Page</div>
-      );
-      break;
-    case "13-2":
-      content = (
-        <div className="p-10 text-xl font-bold">🎥 Video Gallery Page</div>
-      );
-      break;
     case "14":
       content = <AllEvents />;
       break;
+
     case "15":
       content = <CreatePartners />;
       break;
+
     case "16":
       content = <AllPartners />;
       break;
@@ -172,17 +165,19 @@ const MainLayout = () => {
   }
 
   let items = [
-    getItem("All Users", "1", <UserOutlined />),
-    getItem("Orders", "2", <CiShop />),
-    getItem("Brand", "3", <CiShoppingTag />),
-    getItem("Category", "4", <BiCategory />),
-    getItem("Product", "5", <UploadOutlined />),
-    getItem("Services", "11", <RiCustomerService2Line />),
-    getItem("Gallery", "13", <MdEmojiEvents />, [
-      getItem("Image", "13-1", <UploadOutlined />),
-      getItem("Video", "13-2", <UploadOutlined />),
-    ]),
-    getItem("Partners", "15", <FaUserFriends />),
+    getItem(" All Users", "1", <UserOutlined />),
+
+    getItem(" Orders", "2", <CiShop />),
+    getItem(" Brand", "3", <CiShoppingTag />),
+    getItem(" Category", "4", <BiCategory />),
+    getItem(" Product", "5", <UploadOutlined />),
+    getItem(" Services", "11", <RiCustomerService2Line />),
+    getItem(" Blog category ", "7", <MdEmojiEvents />),
+    getItem("blog","8", <MdEmojiEvents />),
+    getItem(" Gallery", "13", <MdEmojiEvents />),
+    
+
+    getItem(" Partners", "15", <FaUserFriends />),
     getItem("All Contact", "17", <MdContacts />),
     getItem("ADD Banner", "18", <GiKnightBanner />),
   ];
@@ -194,7 +189,6 @@ const MainLayout = () => {
     message.success("You have been logged out!");
     navigate("/");
   };
-
   return (
     <Layout hasSider>
       {!hideLayout && (

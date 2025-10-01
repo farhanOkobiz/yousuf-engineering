@@ -1,23 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Containar from "../components/containar/Containar";
-import Product from "../components/home/Product";
-import BradCumbs from "../components/shared/BradCumbs";
-import HeroBanner from "../components/shop/HeroBanner";
+// import Product from "../components/home/Product";
+// import BradCumbs from "../components/shared/BradCumbs";
+// import HeroBanner from "../components/shop/HeroBanner";
 import Skeleton from "react-loading-skeleton"; // Import skeleton loader
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { FaBangladeshiTakaSign, FaChevronRight } from "react-icons/fa6";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { FaChevronRight } from "react-icons/fa6";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { FaChevronLeft, FaList } from "react-icons/fa";
-import ProductGridShopPage from "../components/shop/ProductGridShopPage";
+// import { FaChevronLeft, FaList } from "react-icons/fa";
+// import ProductGridShopPage from "../components/shop/ProductGridShopPage";
 import api from "../components/axios/Axios";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import PriceRange from "../components/shop/PriceRange";
-import { FaFilter } from "react-icons/fa6";
+// import PriceRange from "../components/shop/PriceRange";
+// import { FaFilter } from "react-icons/fa6";
 
 const Shop = () => {
   const swiperRef = useRef(null);
@@ -27,7 +27,7 @@ const Shop = () => {
   const [deals, setDeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // State for loading
   const location = useLocation();
-
+  const [products, setProducts] = useState([]);
   const isCategoryPath = location.pathname.startsWith("/shop/category");
   const isBrandPath = location.pathname.startsWith("/shop/brand");
 
@@ -72,23 +72,36 @@ const Shop = () => {
     }
   };
 
+  const getProducts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await api.get(`/products`);
+      setProducts(response.data?.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error.message);
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getCategory();
     getBanners();
     getBrand();
+    getProducts();
   }, []);
 
-  const handlePrev = () => {
-    if (swiperRef.current) {
-      swiperRef.current.swiper.slidePrev();
-    }
-  };
+  // const handlePrev = () => {
+  //   if (swiperRef.current) {
+  //     swiperRef.current.swiper.slidePrev();
+  //   }
+  // };
 
-  const handleNext = () => {
-    if (swiperRef.current) {
-      swiperRef.current.swiper.slideNext();
-    }
-  };
+  // const handleNext = () => {
+  //   if (swiperRef.current) {
+  //     swiperRef.current.swiper.slideNext();
+  //   }
+  // };
 
   const lastSlug = location.pathname.split("/").pop();
 

@@ -12,7 +12,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Login />} />
-
       <Route
         path="/dashboard"
         element={

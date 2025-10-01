@@ -19,8 +19,6 @@ const Event = () => {
   const getEvents = async () => {
     try {
       const response = await api.get(`/events`);
-      // console.log(`response`, response);
-
       setEvents(response.data?.data);
       if (response.data?.data?.doc?.length > 0) {
         getSingleEvent(response.data?.data?.doc[0]._id); // Get the first event
@@ -77,43 +75,82 @@ const Event = () => {
               Our Gallery
             </h4>
           </div>
-
           <div>
             {loading ? (
-              <div>
-                <Skeleton height={200} />
-              </div>
+              <Skeleton height={200} />
             ) : (
               <>
                 {events?.doc?.length > 0 ? (
                   <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 md:gap-y-8 gap-x-8 mt-8">
-                      {events?.doc.slice(0, 8).map(
-                        (
-                          image // Limit to 4 images
-                        ) => (
-                          <PhotoView key={image.id} src={image?.photo}>
-                            <img
-                              src={image?.photo}
-                              alt="company gallery photo"
-                              className="w-full md:w-80 h-48 object-cover rounded-lg"
-                            />
-                          </PhotoView>
-                        )
-                      )}
-                    </div>
-                    <div className="mt-8 text-center">
-                      <Link
-                        to="/gallery"
-                        className="w-28 mx-auto px-6 py-3 text-lg font-medium text-white bg-primary rounded-full hover:transform hover:scale-110 transition-all ease-linear duration-200"
-                      >
-                        See full gallery
-                      </Link>
-                    </div>
+                    {/* Images Row */}
+                    {events?.doc.some((item) => item.photo) && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 md:gap-y-8 gap-x-8 mt-8">
+                        {events?.doc
+                          .filter((item) => item.photo) // শুধু images
+                          .slice(0, 8)
+                          .map((item) => (
+                            <PhotoView key={item._id} src={item.photo}>
+                              <img
+                                src={item.photo}
+                                alt={item.heading}
+                                className="w-full md:w-80 h-48 object-cover rounded-lg"
+                              />
+                            </PhotoView>
+                          ))}
+                      </div>
+                    )}
+
+                    {/* Videos Row */}
+                    {events?.doc.some(
+                      (item) =>
+                        item.youtubeVideo && item.youtubeVideo !== "undefined"
+                    ) && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 md:gap-y-8 gap-x-8 mt-8">
+                        {events?.doc
+                          .filter(
+                            (item) =>
+                              item.youtubeVideo &&
+                              item.youtubeVideo !== "undefined" &&
+                              item.youtubeVideo.includes("youtu")
+                          )
+                          .slice(0, 8)
+                          .map((item) => {
+                            let videoId = "";
+                            if (item.youtubeVideo.includes("youtu.be")) {
+                              videoId = item.youtubeVideo
+                                .split("youtu.be/")[1]
+                                .split("?")[0];
+                            } else if (item.youtubeVideo.includes("watch?v=")) {
+                              videoId = item.youtubeVideo
+                                .split("watch?v=")[1]
+                                .split("&")[0];
+                            }
+                            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+                            return (
+                              <div
+                                key={item._id}
+                                className="relative w-full md:w-80 h-48 rounded-lg overflow-hidden"
+                              >
+                                <iframe
+                                  width="100%"
+                                  height="100%"
+                                  src={embedUrl}
+                                  title={item.heading}
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  className="rounded-lg"
+                                />
+                              </div>
+                            );
+                          })}
+                      </div>
+                    )}
                   </>
                 ) : (
                   <p className="h-32 flex items-center text-2xl font-semibold text-primary">
-                    No images available!
+                    No media available!
                   </p>
                 )}
               </>
