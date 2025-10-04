@@ -85,7 +85,7 @@ body{
 
 
 .custom-html-content p {
-    @apply mt-4 text-lg leading-[32px] font-robo;
+    @apply mt-4 text-lg leading-[32px] font-poppins;
     line-height: 32px;
   }
   

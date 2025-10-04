@@ -61,11 +61,10 @@ const Service = () => {
             </div>
             <div className="text-center my-7">
               <h5 className="text-[16px] sm:text-[21px] font-semibold mb-4 uppercase text-primary">
-                Our Sewing Machine Company
+                Our Services
               </h5>
-              <h2 className="text-xl sm:text-3xl font-bold max-w-xl mx-auto">
-                We’re a World-Leading Provider of Sewing Machines & Related
-                Services
+              <h2 className="text-xl sm:text-3xl font-bold max-w-2xl mx-auto">
+               Reliable Engineering Solutions for Every Industry
               </h2>
             </div>
             {loading ? (

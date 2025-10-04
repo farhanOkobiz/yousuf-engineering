@@ -55,30 +55,30 @@ export const socialLink = [
     link: "https://www.facebook.com/profile.php?id=100054376337057 ",
     color:"#1877F2"
   },
-  {
-    title: "Youtube",
-    icon: FaYoutube,
-    link: "https://www.youtube.com/@shahalam846",
-    color:"#C11616"
-  },
+  // {
+  //   title: "Youtube",
+  //   icon: FaYoutube,
+  //   link: "https://www.youtube.com/@shahalam846",
+  //   color:"#C11616"
+  // },
   {
     title: "WhatsApp",
     icon: FaWhatsapp, // WhatsApp icon from React Icons
     link: "https://wa.me/8801914314909", // WhatsApp link with international number
     color: "#25D366",
   },
-  {
-    title: "Telegram",
-    icon: FaTelegram,
-    link: "https://t.me/+88018187729352",
-    color: "#0088cc",
-  },
-  {
-    title: "WeChat",
-    icon: FaWeixin, 
-    link: "weixin://dl/chat?shahalam2935", 
-    color: "#1AAD19",
-  },
+  // {
+  //   title: "Telegram",
+  //   icon: FaTelegram,
+  //   link: "https://t.me/+88018187729352",
+  //   color: "#0088cc",
+  // },
+  // {
+  //   title: "WeChat",
+  //   icon: FaWeixin, 
+  //   link: "weixin://dl/chat?shahalam2935", 
+  //   color: "#1AAD19",
+  // },
 ];
 
 export const contactInfo = [

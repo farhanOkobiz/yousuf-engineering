@@ -12,7 +12,7 @@ const About = () => {
   return (
     <div className="font-robo lg:px-0">
       <div className="h-[68px] sm:h-[83.4px] bg-[#f5f5f5] "></div>
-      <BradCumbs title="Know About Qutex " brad="About"></BradCumbs>
+      <BradCumbs title="Know About Yousuf engineering" brad="About"></BradCumbs>
       <AboutIntroduction></AboutIntroduction>
       <AboutValues></AboutValues>
       <WhatWeDo></WhatWeDo>

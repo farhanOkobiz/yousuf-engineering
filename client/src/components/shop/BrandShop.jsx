@@ -338,7 +338,14 @@ const BrandShop = () => {
   const toggleDrawer = () => {
     setShopDrawerOpen((prevState) => !prevState);
   };
-  
+
+  let sortedProducts = [...products];
+
+  if (sortOption === "lowToHigh") {
+    sortedProducts.sort((a, b) => (a.price || 0) - (b.price || 0));
+  } else if (sortOption === "highToLow") {
+    sortedProducts.sort((a, b) => (b.price || 0) - (a.price || 0));
+  }
 
   return (
     <>
@@ -374,7 +381,7 @@ const BrandShop = () => {
       {gridOrList ? (
         <div className="mt-14">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 w-full px-5 pb-6">
-            {products?.map((product, index) => (
+            {sortedProducts?.map((product, index) => (
               <div
                 key={index}
                 className="rounded-lg hover:shadow-lg overflow-hidden bg-white group pb-4 border"
@@ -421,7 +428,7 @@ const BrandShop = () => {
       ) : (
         <div className="px-5 py-14">
           <div className="flex flex-col gap-y-10">
-            {products?.map((product, index) => (
+            {sortedProducts?.map((product, index) => (
               <div
                 key={index}
                 className="grid grid-cols-12 lg:gap-x-10 pb-8 border-b"

@@ -276,7 +276,7 @@ const Shop = () => {
                 {isCategoryPath || isBrandPath ? (
                   <Outlet />
                 ) : (
-                  <ProductList products={products.doc} isLoading={isLoading} />
+                  <ProductList products={products?.doc} loading={isLoading}  />
                 )}
               </div>
             </div>

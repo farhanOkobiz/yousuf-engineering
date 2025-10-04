@@ -1,4 +1,3 @@
-// src/redux/slices/sortSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const sortSlice = createSlice({

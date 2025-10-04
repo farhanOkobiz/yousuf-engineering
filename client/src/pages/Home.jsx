@@ -1,4 +1,3 @@
-
 import Partner from "../components/home/Partner";
 import Product from "../components/home/Product";
 import Banner from "../components/home/Banner";
@@ -10,10 +9,10 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <Service />
       <Product />
+      <Service />
       <Event />
-      <WhyChooseUs/>
+      <WhyChooseUs />
       <Partner />
     </>
   );

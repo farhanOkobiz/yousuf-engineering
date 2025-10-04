@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        robo: ["Roboto", "sans-serif"], // Correct fallback font
+        poppins: ["Poppins", "Arial", "Helvetica", "sans-serif"],// Correct fallback font
       },
       colors: {
         primary: "#0083cb",

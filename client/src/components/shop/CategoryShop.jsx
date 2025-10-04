@@ -46,7 +46,7 @@ const CategoryShop = () => {
 
   // console.log(location);
   const lastSlug = location.pathname.split("/").pop();
-   console.log("last slug === ", lastSlug)
+
   // console.log("lastSlug", lastSlug);
   // Fetch products function
   const fetchProducts = async (page, limit) => {
@@ -67,7 +67,7 @@ const CategoryShop = () => {
           sort,
         },
       });
-      console.log("response === ", response.data)
+      console.log("response === ", response.data);
       setTotalProducts(response.data.totalData); // Update total products
       return response.data.data.products;
     } catch (error) {
@@ -93,6 +93,14 @@ const CategoryShop = () => {
   const toggleDrawer = () => {
     setShopDrawerOpen((prevState) => !prevState);
   };
+
+  let sortedProducts = [...products];
+
+  if (sortOption === "lowToHigh") {
+    sortedProducts.sort((a, b) => (a.price || 0) - (b.price || 0));
+  } else if (sortOption === "highToLow") {
+    sortedProducts.sort((a, b) => (b.price || 0) - (a.price || 0));
+  }
 
   return (
     <>
@@ -128,7 +136,7 @@ const CategoryShop = () => {
       {gridOrList ? (
         <div className="mt-14">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 w-full px-5 pb-6">
-            {products?.map((product, index) => (
+            {sortedProducts?.map((product, index) => (
               <div
                 key={index}
                 className="rounded-lg hover:shadow-lg overflow-hidden bg-white group pb-4 border"
@@ -173,7 +181,7 @@ const CategoryShop = () => {
       ) : (
         <div className="px-5 py-14">
           <div className="flex flex-col gap-y-10">
-            {products?.map((product, index) => (
+            {sortedProducts?.map((product, index) => (
               <div
                 key={index}
                 className="grid grid-cols-12 lg:gap-x-10 pb-8 border-b"

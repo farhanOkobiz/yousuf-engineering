@@ -48,14 +48,15 @@ const AboutValues = () => {
                 Our Mission
               </h2>
               <p className="w-full  leading-7 text-lg text-justify text-gray-500">
-                At Qutex, our mission is to revolutionize the sewing industry by
-                delivering innovative, high-quality sewing machines and services
-                that empower creativity and precision. We are dedicated to
-                supporting individuals and businesses by providing reliable,
-                efficient, and user-friendly solutions tailored to meet their
-                unique needs. Through excellence in craftsmanship and a
-                commitment to customer satisfaction, we aim to inspire
-                creativity and elevate sewing experiences worldwide.
+                Our mission is to deliver reliable, high-quality repair and
+                maintenance services for refrigerators, air conditioners, and
+                motherboards. We are committed to ensuring optimal appliance
+                performance, extending the lifespan of your devices, and
+                providing innovative technical solutions that cater to both
+                homes and businesses. At Yousuf Engineering, customer
+                satisfaction is at the heart of everything we do, and we strive
+                to combine expertise, efficiency, and trust to create seamless,
+                long-lasting solutions for all your appliance needs.
               </p>
             </div>
             <div>
@@ -63,14 +64,16 @@ const AboutValues = () => {
                 Our Vision
               </h2>
               <p className="w-full leading-7 text-lg text-gray-500 text-justify">
-                Our vision is to become a global leader in the sewing machine
-                industry, known for innovation, reliability, and
-                customer-centric solutions. We strive to foster a community of
-                creators, designers, and businesses who trust Qutex as their
-                partner in achieving excellence. By driving technological
-                advancements and sustainable practices, we envision a future
-                where Qutex empowers every individual to unlock their full
-                creative potential and bring their ideas to life.
+                Our vision is to become the leading and most trusted provider of
+                repair, maintenance, and technical solutions for refrigerators,
+                air conditioners, and motherboards, setting the benchmark for
+                excellence, innovation, and customer satisfaction. We aim to
+                ensure every home and business enjoys reliable, efficient, and
+                long-lasting appliance performance. By advancing our expertise,
+                embracing the latest technologies, and delivering professional
+                solutions, Yousuf Engineering aspires to exceed expectations,
+                build lasting customer relationships, and make appliance
+                reliability the standard.
               </p>
             </div>
           </div>

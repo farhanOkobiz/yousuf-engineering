@@ -19,13 +19,14 @@ const Footer = () => {
                   <img className="w-full" src={logo} />
                 </div>
                 <h2 className="text-xl text-text font-bold mb-3 mt-5">
-                  We Are Qutex
+                  We Are Yousuf Engineering
                 </h2>
                 <p className="text-[14px] leading-7 text-gray-600">
-                  Our Mission Is To Empower Garment Manufacturers, Tailors, And
-                  Fashion Designers By Providing High-Quality Industrial Sewing
-                  Machines And Services That Optimize Production, Enhance
-                  Efficiency, And Drive Innovation In The Apparel Industry.
+                  We Are Yousuf Engineering – Committed to empowering garment
+                  manufacturers, tailors, and fashion designers by providing
+                  high-quality industrial sewing machines and expert services
+                  that enhance production, efficiency, and innovation in the
+                  apparel industry.
                 </p>
               </div>
 

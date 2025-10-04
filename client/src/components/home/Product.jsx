@@ -29,7 +29,7 @@ const Product = () => {
 
   const handleBuyNow = (product) => {
     dispatch(addToAgroCart({ ...product, quantity: 1 }));
-    navigate(`/checkout/${product?._id}`)
+    navigate(`/checkout/${product?._id}`);
   };
 
   const getProducts = async () => {
@@ -115,9 +115,16 @@ const Product = () => {
                                     >
                                       {product?.title}
                                     </Link>
+
                                     <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-5">
-                                      <FaBangladeshiTakaSign className="inline" />
-                                      <span>{product?.price}</span>
+                                      {product?.price ? (
+                                        <>
+                                          <FaBangladeshiTakaSign className="inline" />
+                                          <span>{product?.price}</span>
+                                        </>
+                                      ) : (
+                                        <span>&nbsp;</span>
+                                      )}
                                     </p>
                                   </div>
                                   <div className="flex justify-between items-center mt-5">
