@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import Containar from "../layouts/Containar";
 import { socialList } from "../components/constants";
@@ -20,18 +20,18 @@ const AboutInfo = () => {
               </p>
             </div>
             <div>
-                <h3 className="text-xl font-medium text-texthead mt-10">What we really do?</h3>
-                <p className="text-sm font-normal text-texthead mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam voluptates asperiores optio dolorem quia officiis ea saepe rerum, modi beatae laborum corporis. Rem sunt beatae eius cupiditate vitae fugit itaque adipisci natus. Odit commodi nostrum atque suscipit obcaecati autem doloribus et dicta, enim distinctio earum quisquam dolor nulla voluptates non excepturi eveniet rerum quos esse molestiae voluptatum doloremque? Repudiandae, adipisci! Quas, vitae nemo rem beatae quo dolor obcaecati. Ratione facilis quas quia, libero voluptas perferendis atque, voluptates saepe id recusandae unde laborum sit qui in cupiditate ullam nobis doloribus impedit reprehenderit rem! Hic, praesentium doloribus aliquam dicta nostrum suscipit commodi?</p>
+              <h3 className="text-xl font-medium text-texthead mt-10">What we really do?</h3>
+              <p className="text-sm font-normal text-texthead mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam voluptates asperiores optio dolorem quia officiis ea saepe rerum, modi beatae laborum corporis. Rem sunt beatae eius cupiditate vitae fugit itaque adipisci natus. Odit commodi nostrum atque suscipit obcaecati autem doloribus et dicta, enim distinctio earum quisquam dolor nulla voluptates non excepturi eveniet rerum quos esse molestiae voluptatum doloremque? Repudiandae, adipisci! Quas, vitae nemo rem beatae quo dolor obcaecati. Ratione facilis quas quia, libero voluptas perferendis atque, voluptates saepe id recusandae unde laborum sit qui in cupiditate ullam nobis doloribus impedit reprehenderit rem! Hic, praesentium doloribus aliquam dicta nostrum suscipit commodi?</p>
             </div>
             <div className="mt-10 flex gap-x-28">
-                <div>
-                    <h3 className="text-xl text-texthead font-medium">Our Vision</h3>
-                    <p className="text-sm mt-2 text-texthead font-normal">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus animi laudantium iste debitis consequuntur, minima rem. Cum commodi eos, non dolorum at aut impedit cumque veritatis pariatur labore, iure facere?</p>
-                </div>
-                <div>
-                    <h3 className="text-xl mt-2 text-texthead font-medium">Our Vision</h3>
-                    <p className="text-sm text-texthead font-normal">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus animi laudantium iste debitis consequuntur, minima rem. Cum commodi eos, non dolorum at aut impedit cumque veritatis pariatur labore, iure facere?</p>
-                </div>
+              <div>
+                <h3 className="text-xl text-texthead font-medium">Our Vision</h3>
+                <p className="text-sm mt-2 text-texthead font-normal">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus animi laudantium iste debitis consequuntur, minima rem. Cum commodi eos, non dolorum at aut impedit cumque veritatis pariatur labore, iure facere?</p>
+              </div>
+              <div>
+                <h3 className="text-xl mt-2 text-texthead font-medium">Our Vision</h3>
+                <p className="text-sm text-texthead font-normal">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus animi laudantium iste debitis consequuntur, minima rem. Cum commodi eos, non dolorum at aut impedit cumque veritatis pariatur labore, iure facere?</p>
+              </div>
             </div>
             <div>
               <h3 className="text-xl text-texthead font-medium mt-16">

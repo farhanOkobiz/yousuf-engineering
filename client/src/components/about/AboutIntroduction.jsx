@@ -1,4 +1,4 @@
-import aboutHeader from "../../assets/About/about_header.jpg";
+import aboutHeader from "../../assets/About/about_header.png";
 import Containar from "../containar/Containar";
 const AboutIntroduction = () => {
   return (
