@@ -77,9 +77,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`transition-all duration-300 ease-in-out ${
-        isSticky ? "bg-white" : "sm:bg-[rgba(0,0,0,0.11)] sm:backdrop-blur-[3%]"
-      } z-[9999] font-robo fixed left-0 top-0 w-full`}
+      className={`transition-all duration-300 ease-in-out ${isSticky ? "bg-white" : "sm:bg-[rgba(0,0,0,0.11)] sm:backdrop-blur-[3%]"
+        } z-[9999] font-robo fixed left-0 top-0 w-full`}
     >
       <Containar>
         <div className="py-4">
@@ -114,7 +113,7 @@ const Navbar = () => {
                           {item?.icon && <item.icon className="mr-2" />}
                           {item?.title}
                         </div>
-                        <span className="hidden lg:block">01914314909</span> 
+                        <span className="hidden lg:block">01714028279</span>
                       </a>
                     ) : (
                       <NavLink
@@ -122,9 +121,8 @@ const Navbar = () => {
                         className={({ isActive }) =>
                           isActive
                             ? `text-primary text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:text-primary transition-all ease-linear duration-150 flex items-center`
-                            : `${
-                                isSticky ? "text-gray-700" : "text-white"
-                              }  text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:text-primary transition-all ease-linear duration-150 flex items-center`
+                            : `${isSticky ? "text-gray-700" : "text-white"
+                            }  text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:text-primary transition-all ease-linear duration-150 flex items-center`
                         }
                       >
                         {item?.title}

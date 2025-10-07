@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"; // Import useDispatch to dispatch actions
+// import { useDispatch, useSelector } from "react-redux";  
 import SinglePageBradCumbs from "../components/shared/SinglePageBradCumbs";
 import Containar from "../components/containar/Containar";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,15 +11,15 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../components/axios/Axios";
-import BestSellProduct from "../components/shop/BestSellProduct";
+// import BestSellProduct from "../components/shop/BestSellProduct";
 import RelatedProductItem from "../components/shop/RelatedProductItem";
-import { addToAgroCart } from "../redux/slices/cart/agroCartSlice";
+// import { addToAgroCart } from "../redux/slices/cart/agroCartSlice";
 import Skeleton from "react-loading-skeleton";
 import "react-toastify/dist/ReactToastify.css";
 
 const SingleShopPage = () => {
   const swiperRef = useRef(null);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const location = useLocation();
   const lastSlug = location.pathname.split("/").pop();
@@ -54,15 +54,15 @@ const SingleShopPage = () => {
     navigate(`/checkout/${product?._id}`);
   };
 
-  console.log("Product List", product);
 
-  const model = ["XYZ-123", "XYZ-456"];
-  const specifications = [
-    { label: "Type", typeValue: ["aa", "bb"] },
-    { label: "Power", typeValue: ["aa", "bb"] },
-    { label: "Weight", typeValue: ["aa", "bb"] },
-    { label: "Warranty", typeValue: ["aa", "bb"] },
-  ];
+
+  // const model = ["XYZ-123", "XYZ-456"];
+  // const specifications = [
+  //   { label: "Type", typeValue: ["aa", "bb"] },
+  //   { label: "Power", typeValue: ["aa", "bb"] },
+  //   { label: "Weight", typeValue: ["aa", "bb"] },
+  //   { label: "Warranty", typeValue: ["aa", "bb"] },
+  // ];
 
   return (
     <div className="font-robo">
@@ -168,7 +168,7 @@ const SingleShopPage = () => {
                     <div className="text-2xl font-bold">Advantages:</div>
                     <div>
                       {product?.advantages &&
-                      Array.isArray(product.advantages) ? (
+                        Array.isArray(product.advantages) ? (
                         <ul className="list-disc pl-5">
                           {product.advantages.map((advantage, index) => (
                             <li key={index} className="my-3">
@@ -238,7 +238,7 @@ const SingleShopPage = () => {
                   )}
                 </div>
               </div>
-              <div className="text-xl underline text-blue-500 text-center">https://qutexbd.com/</div>
+
             </div>
           </div>
         </div>

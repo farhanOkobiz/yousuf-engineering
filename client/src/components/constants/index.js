@@ -4,9 +4,9 @@ import {
   // FaInstagram,
   // FaLinkedin,
   FaPhoneAlt,
-  FaYoutube,
-  FaTelegram,
-  FaWeixin,
+  // FaYoutube,
+  // FaTelegram,
+  // FaWeixin,
   FaWhatsapp
 } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
@@ -32,7 +32,7 @@ export const menulist = [
     title: "About",
     link: "/about",
   },
-   {
+  {
     title: "Blog",
     link: "/blogs",
   },
@@ -43,7 +43,7 @@ export const menulist = [
   {
     title: "Hotline",
     icon: FaPhoneAlt,
-    link: "tel:+8801914314909",
+    link: "tel:+01714028279",
     color: "#E63946",
   },
 ];
@@ -53,7 +53,7 @@ export const socialLink = [
     title: "Facebook",
     icon: FaFacebookF,
     link: "https://www.facebook.com/profile.php?id=100054376337057 ",
-    color:"#1877F2"
+    color: "#1877F2"
   },
   // {
   //   title: "Youtube",
@@ -64,7 +64,7 @@ export const socialLink = [
   {
     title: "WhatsApp",
     icon: FaWhatsapp, // WhatsApp icon from React Icons
-    link: "https://wa.me/8801914314909", // WhatsApp link with international number
+    link: "https://wa.me/01714028279", // WhatsApp link with international number
     color: "#25D366",
   },
   // {
@@ -90,14 +90,14 @@ export const contactInfo = [
   // },
   {
     title: "Contact Number",
-    contact: "01914314909",
-    link: "tel:01914314909",
+    contact: "01714-028-279",
+    link: "tel:01714028279",
     icon: FaPhoneAlt,
   },
   {
     title: "Email",
-    contact: "tmcsbd.hss@gmail.com",
-    link: "mailto:tmcsbd.hss@gmail.com",
+    contact: "yousufengineering2024@gmail.com",
+    link: "mailto:yousufengineering2024@gmail.com",
     icon: FaEnvelope,
   },
 ];
@@ -114,46 +114,46 @@ import partner6 from "../../assets/partners/clients-image-copyright-6.webp";
 export const partnerList = [
   {
     logo: partner1,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner2,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner3,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner4,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner5,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner6,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner2,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner3,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner4,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner5,
-    name: "Qutex",
+    name: "yousufengineering",
   },
   {
     logo: partner6,
-    name: "Qutex",
+    name: "yousufengineering",
   },
 ];

@@ -108,21 +108,19 @@ const CategoryShop = () => {
         <div className="flex items-center gap-2">
           <div
             onClick={() => setGridOrList(true)}
-            className={`w-9 h-9 ${
-              gridOrList
-                ? "bg-primary text-white"
-                : "bg-transparent border text-text"
-            } flex cursor-pointer justify-center items-center`}
+            className={`w-9 h-9 ${gridOrList
+              ? "bg-primary text-white"
+              : "bg-transparent border text-text"
+              } flex cursor-pointer justify-center items-center`}
           >
             <BsGrid3X3GapFill className="w-5 h-5" />
           </div>
           <div
             onClick={() => setGridOrList(false)}
-            className={`w-9 h-9 border flex ${
-              !gridOrList
-                ? "bg-primary text-white"
-                : "bg-transparent border text-text"
-            } cursor-pointer justify-center items-center`}
+            className={`w-9 h-9 border flex ${!gridOrList
+              ? "bg-primary text-white"
+              : "bg-transparent border text-text"
+              } cursor-pointer justify-center items-center`}
           >
             <FaList className="w-5 h-5" />
           </div>
@@ -158,13 +156,16 @@ const CategoryShop = () => {
                   </div> */}
                 </div>
                 <div className="px-4 ">
-                  <h2 className="font-medium text-[20px] mt-7 mb-2 capitalize">
+                  <h2 className="font-medium line-clamp-3  hover:underline hover:text-blue-700  text-[0.75rem] md:text-[1rem] mt-7 mb-2 capitalize">
                     <Link to={`/shop/${product?.slug}`}>{product?.title}</Link>
                   </h2>
-                  <p className="text-gray-600 text-[18px] flex items-center ">
-                    <FaBangladeshiTakaSign className="mr-1" />
-                    {product?.price}
-                  </p>
+                  {product?.price && (
+                    <p className="flex items-center text-[0.75rem] md:text-[1rem] font-bold text-[#00AEEF]  mt-5">
+                      <FaBangladeshiTakaSign className="mr-1" />
+                      {product?.price}
+                    </p>
+                  )}
+
                   <div className="flex justify-between items-center mt-3">
                     <button
                       onClick={() => handleBuyNow(product)}
@@ -196,7 +197,7 @@ const CategoryShop = () => {
                 <div className="col-span-12 md:col-span-8">
                   <Link
                     to={`/shop/${product?.slug}`}
-                    className="text-[24px] font-semibold text-text capitalize"
+                    className="font-medium line-clamp-3  hover:underline hover:text-blue-700  text-[0.75rem] md:text-[1rem] mt-7 mb-2 capitalize"
                   >
                     {product?.title}
                   </Link>
@@ -204,10 +205,13 @@ const CategoryShop = () => {
                   <p className="text-gray-600 text-[14px] line-clamp-3 leading-7 mt-3">
                     {product?.details.replace(/<\/?[^>]+(>|$)/g, "")}
                   </p>
-                  <p className="flex items-center text-[18px] mt-5">
-                    <FaBangladeshiTakaSign className="inline-block mr-1" />
-                    {product?.price}
-                  </p>
+                  {product?.price && (
+                    <p className="flex items-center text-[0.75rem] md:text-[1rem] font-bold text-[#00AEEF]  mt-5">
+                      <FaBangladeshiTakaSign className="inline-block mr-1" />
+                      {product?.price}
+                    </p>
+                  )}
+
                   <div className="flex items-center gap-x-2.5 mt-7">
                     <button
                       onClick={() => handleBuyNow(product)}

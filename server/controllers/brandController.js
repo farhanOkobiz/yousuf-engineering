@@ -18,7 +18,7 @@ exports.createBrandController = catchAsync(async (req, res) => {
   const body = {
     ...req.body,
   };
-  console.log(req.body, "from brand controller =====================>");
+
   const title = body?.title;
   const slug = generateSlug(title);
   body.slug = slug;
@@ -39,7 +39,7 @@ exports.getAllBrandsController = catchAsync(async (req, res) => {
   const brands = await Brand.aggregate([
     {
       $lookup: {
-        from: "products", // Collection name in MongoDB
+        from: "products",
         localField: "_id",
         foreignField: "brand",
         as: "products",
@@ -52,7 +52,7 @@ exports.getAllBrandsController = catchAsync(async (req, res) => {
     },
     {
       $project: {
-        products: 0, // Exclude products array to reduce response size
+        products: 0,
       },
     },
   ]);

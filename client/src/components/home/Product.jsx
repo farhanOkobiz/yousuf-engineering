@@ -1,19 +1,19 @@
-import product1 from "../../assets/product-1.png";
-import leaves from "../../assets/home/leaves-1-2.png";
+// import product1 from "../../assets/product-1.png";
+// import leaves from "../../assets/home/leaves-1-2.png";
 import leafIcon from "../../assets/home/leaf-icon3.png";
 import Containar from "../containar/Containar";
-import { IoCart } from "react-icons/io5";
-import { useEffect, useState, useRef } from "react";
+// import { IoCart } from "react-icons/io5";
+import { useEffect, useState } from "react";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import api from "../axios/Axios";
 import { addToAgroCart } from "../../redux/slices/cart/agroCartSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { useDispatch } from "react-redux";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+// import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -22,10 +22,10 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
   const navigate = useNavigate();
-  const swiperRef = useRef(null); // Reference for Swiper
-  const token = useSelector((state) => state.auth.token);
+  // const swiperRef = useRef(null); 
+  // const token = useSelector((state) => state.auth.token);
 
   const handleBuyNow = (product) => {
     dispatch(addToAgroCart({ ...product, quantity: 1 }));
@@ -47,17 +47,17 @@ const Product = () => {
     getProducts();
   }, []);
 
-  const handleNext = () => {
-    if (swiperRef.current) {
-      swiperRef.current.swiper.slideNext();
-    }
-  };
+  // const handleNext = () => {
+  //   if (swiperRef.current) {
+  //     swiperRef.current.swiper.slideNext();
+  //   }
+  // };
 
-  const handlePrev = () => {
-    if (swiperRef.current) {
-      swiperRef.current.swiper.slidePrev();
-    }
-  };
+  // const handlePrev = () => {
+  //   if (swiperRef.current) {
+  //     swiperRef.current.swiper.slidePrev();
+  //   }
+  // };
 
   return (
     <div className="bg-[#FBF7F0] py-12 sm:pt-[110px] sm:pb-[130px] font-robo relative group">
@@ -111,9 +111,9 @@ const Product = () => {
                                   <div className="">
                                     <Link
                                       to={`/shop/${product?.slug}`}
-                                      className="font-bold text-xl mb-2 capitalize"
+                                      className="font-bold text-[1rem] line-clamp-3 mb-2 capitalize"
                                     >
-                                      {product?.title}
+                                      <span className="text-[1rem]">{product?.title} </span>
                                     </Link>
 
                                     <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-5">

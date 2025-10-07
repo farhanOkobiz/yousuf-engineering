@@ -15,53 +15,54 @@ const Blogs = () => {
   const [activeFilter, setActiveFilter] = useState("*");
   const containerRef = useRef(null);
   const [uniqueCategories, setUniqueCategories] = useState([]);
-  const [currentPage, ] = useState(1);
+  const [currentPage,] = useState(1);
+  const [limit, setLimit] = useState(9);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   // const router = useRouter();
 
-  const getBlogs = async () => {
-    try {
-      const response = await api.get(`/blogs?page=${currentPage}&limit=20`);
-      const formattedBlogs = response.data?.data?.doc?.map((blog) => ({
-        id: blog?._id,
-        title: blog?.title,
-        author: blog?.author?.name,
-        category: blog?.category?.slug,
-        photos: blog?.photos,
-        content: blog?.content,
-        date: new Date(blog.createdAt).toLocaleString("en-US", {
-          day: "2-digit",
-          month: "short",
-        }),
-        slug: blog?.slug,
-      }));
-      const categoryMap = new Map();
-      response.data?.data?.doc?.forEach((blog) => {
-        const slug = blog?.category?.slug;
-        const title = blog?.category?.title;
-        if (!categoryMap.has(slug)) {
-          categoryMap.set(slug, title);
-        }
-      });
-      const uniqueCategories = Array.from(categoryMap, ([slug, title]) => ({
-        slug,
-        title,
-      }));
-      setUniqueCategories(uniqueCategories);
-      setBlogs(formattedBlogs);
-      setLoading(false);
-    } catch (error) {
-      console.error(error)
-      // setError(error.message);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    getBlogs();
-  }, []);
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get(`/blogs?page=${currentPage}&limit=${limit}`);
+        const formattedBlogs = response.data?.data?.doc?.map((blog) => ({
+          id: blog?._id,
+          title: blog?.title,
+          author: blog?.author?.name,
+          category: blog?.category?.slug,
+          photos: blog?.photos,
+          content: blog?.content,
+          date: new Date(blog.createdAt).toLocaleString("en-US", {
+            day: "2-digit",
+            month: "short",
+          }),
+          slug: blog?.slug,
+        }));
+        const categoryMap = new Map();
+        response.data?.data?.doc?.forEach((blog) => {
+          const slug = blog?.category?.slug;
+          const title = blog?.category?.title;
+          if (!categoryMap.has(slug)) {
+            categoryMap.set(slug, title);
+          }
+        });
+        const uniqueCategories = Array.from(categoryMap, ([slug, title]) => ({
+          slug,
+          title,
+        }));
+        setUniqueCategories(uniqueCategories);
+        setBlogs(formattedBlogs);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, [limit, currentPage]);
 
   useEffect(() => {
     // Initialize MixItUp when the component mounts and blogs are loaded
@@ -110,7 +111,7 @@ const Blogs = () => {
   return (
     <>
       <div className="h-[64px] sm:h-[83.4px] bg-[#f5f5f5]"></div>
-      <BradCumbs title="Agro Blogs & Latest News" brad="Blog & News" />
+      <BradCumbs title="YousufEngineering Blogs & Latest News" brad="Blog & News" />
       <Containar>
         <div className="my-10 py-10 w-full">
           <div className="py-4 bg-primary px-3 sm:px-6 rounded-lg flex flex-col md:flex-row justify-between items-center">
@@ -174,11 +175,10 @@ const Blogs = () => {
                         <button
                           type="button"
                           data-filter="*"
-                          className={`py-1 px-5 rounded-md transition-colors duration-300 ${
-                            activeFilter === "*"
-                              ? "bg-primary text-white"
-                              : "bg-gray-300 text-gray-900"
-                          }`}
+                          className={`py-1 px-5 rounded-md transition-colors duration-300 ${activeFilter === "*"
+                            ? "bg-primary text-white"
+                            : "bg-gray-300 text-gray-900"
+                            }`}
                           onClick={() => handleFilterClick("*")}
                         >
                           All
@@ -189,11 +189,10 @@ const Blogs = () => {
                           <button
                             type="button"
                             data-filter={`.${category?.slug}`}
-                            className={`py-1 px-5 rounded-md transition-colors duration-300 ${
-                              activeFilter === `.${category?.slug}`
-                                ? "bg-primary text-white"
-                                : "bg-gray-300 text-gray-900"
-                            }`}
+                            className={`py-1 px-5 rounded-md transition-colors duration-300 ${activeFilter === `.${category?.slug}`
+                              ? "bg-primary text-white"
+                              : "bg-gray-300 text-gray-900"
+                              }`}
                             onClick={() =>
                               handleFilterClick(`.${category?.slug}`)
                             }
@@ -225,6 +224,17 @@ const Blogs = () => {
                   </p>
                 )}
               </div>
+              {/* Load More button */}
+              {!loading && blogs.length >= limit && (
+                <div className="flex justify-center mt-6">
+                  <button
+                    onClick={() => setLimit((s) => s + 9)}
+                    className="px-6 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition"
+                  >
+                    Load more
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>

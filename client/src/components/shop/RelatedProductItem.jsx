@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { IoCart } from "react-icons/io5";
+import { useEffect, useState, useRef } from "react";
+// import { IoCart } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FaBangladeshiTakaSign,
@@ -12,25 +12,29 @@ import "swiper/css";
 import "swiper/css/navigation";
 import api from "../axios/Axios";
 import { addToAgroCart } from "../../redux/slices/cart/agroCartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 
+// eslint-disable-next-line react/prop-types
 const RelatedProductItem = ({ slug, prevProductId }) => {
   const [products, setProducts] = useState([]);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const containerRef = useRef(null);
+  const slideRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [swiperInstance, setSwiperInstance] = useState(null);
-  const token = useSelector((state) => state.auth.token);
-  const handleAddtoCart = (product) => {
-    // console.log("product", product);
-    // if(){
+  const [navTop, setNavTop] = useState(null);
+  // const token = useSelector((state) => state.auth.token);
+  // const handleAddtoCart = (product) => {
+  //   // console.log("product", product);
+  //   // if(){
 
-    // }
-    // dispatch(addToAgroCart({ ...product, quantity: 1 }));
-    //   navigate(`/checkout/${product?._id}`);
-    // }
-  };
+  //   // }
+  //   // dispatch(addToAgroCart({ ...product, quantity: 1 }));
+  //   //   navigate(`/checkout/${product?._id}`);
+  //   // }
+  // };
   const handleBuyNow = (product) => {
     dispatch(addToAgroCart({ ...product, quantity: 1 }));
     // navigate("/checkout");
@@ -62,8 +66,27 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
     }
   }, [swiperInstance]);
 
+  // Measure first slide/card and position nav buttons vertically centered to it
+  useEffect(() => {
+    const updateNavTop = () => {
+      const container = containerRef.current;
+      const slide = slideRef.current;
+      if (container && slide) {
+        const containerRect = container.getBoundingClientRect();
+        const slideRect = slide.getBoundingClientRect();
+        const top = slideRect.top - containerRect.top + slideRect.height / 2;
+        setNavTop(Math.round(top));
+      }
+    };
+
+    // run after render
+    updateNavTop();
+    window.addEventListener("resize", updateNavTop);
+    return () => window.removeEventListener("resize", updateNavTop);
+  }, [products, swiperInstance]);
+
   return (
-    <div className="mt-8 relative">
+    <div ref={containerRef} className="mt-8 relative">
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={20}
@@ -90,7 +113,10 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
       >
         {products.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="rounded-lg bg-white border group overflow-hidden">
+            <div
+              ref={index === 0 ? slideRef : null}
+              className="rounded-lg bg-white border group overflow-hidden"
+            >
               <div className="relative">
                 <Link
                   className="overflow-hidden block h-[305px]"
@@ -108,18 +134,21 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
                 </div> */}
               </div>
               {/* Icon and Content */}
-              <div className="mt-7 p-4 text-center">
+              <div className="mt-7 p-4 text-justify">
                 <Link
                   to={`/shop/${item?.slug}`}
-                  className="font-bold text-xl mb-2 capitalize inline-block"
+                  className="font-bold md:text-[1rem] text:[0.75rem] mb-2 line-clamp-3 capitalize inline-block"
                 >
-                  {item?.title}
+                  <span className="font-bold "> {item?.title}</span>
                 </Link>
-                <p className="text-gray-600 text-[18px]">
-                  <FaBangladeshiTakaSign className="inline-block" />{" "}
-                  {item?.price}
-                </p>
-                <div className="flex justify-center items-center mt-5">
+                {item.price && (
+                  <p className="text-blue-800 font-bold text-[0.75rem]  md:text-[1rem]">
+                    <FaBangladeshiTakaSign className="inline-block" />{" "}
+                    {item?.price}
+                  </p>
+                )}
+
+                <div className="flex justify-start items-center mt-5">
                   <button
                     onClick={() => handleBuyNow(item)}
                     className="rounded-full hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 text-white bg-primary px-8 py-2 text-sm"
@@ -135,13 +164,15 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
 
       <button
         ref={prevRef}
-        className="bg-[#178843] hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 text-white rounded-full p-2 absolute -left-4 top-1/2 z-10 -translate-y-1/2"
+        style={navTop != null ? { top: `${navTop}px` } : undefined}
+        className="bg-[#178843] hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 text-white rounded-full p-2 absolute -left-4 z-10 -translate-y-1/2"
       >
         <FaChevronLeft className="w-5 h-5" />
       </button>
       <button
         ref={nextRef}
-        className="bg-[#178843] hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 text-white rounded-full p-2 absolute -right-4 top-1/2 z-10 -translate-y-1/2"
+        style={navTop != null ? { top: `${navTop}px` } : undefined}
+        className="bg-[#178843] hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 text-white rounded-full p-2 absolute -right-4 z-10 -translate-y-1/2"
       >
         <FaChevronRight className="w-5 h-5" />
       </button>

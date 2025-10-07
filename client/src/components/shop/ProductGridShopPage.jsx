@@ -62,7 +62,7 @@ const ProductGridShopPage = () => {
         sort = "price"; // Ascending order of price
       } else if (sortOption === "highToLow") {
         sort = "-price"; // Descending order of price
-      }else {
+      } else {
         sort = "";
       }
 
@@ -124,21 +124,19 @@ const ProductGridShopPage = () => {
         <div className=" flex items-center gap-1 md:gap-2">
           <div
             onClick={() => setGridOrList(true)}
-            className={`w-8 h-8 md:w-9 md:h-9 ${
-              gridOrList
-                ? "bg-primary text-white"
-                : "bg-transparent border text-text"
-            } flex cursor-pointer justify-center items-center `}
+            className={`w-8 h-8 md:w-9 md:h-9 ${gridOrList
+              ? "bg-primary text-white"
+              : "bg-transparent border text-text"
+              } flex cursor-pointer justify-center items-center `}
           >
             <BsGrid3X3GapFill className="w-5 h-5" />
           </div>
           <div
             onClick={() => setGridOrList(false)}
-            className={`w-8 h-8 md:w-9 md:h-9 border flex ${
-              !gridOrList
-                ? "bg-primary text-white"
-                : "bg-transparent border text-text"
-            } cursor-pointer justify-center items-center `}
+            className={`w-8 h-8 md:w-9 md:h-9 border flex ${!gridOrList
+              ? "bg-primary text-white"
+              : "bg-transparent border text-text"
+              } cursor-pointer justify-center items-center `}
           >
             <FaList className="w-5 h-5" />
           </div>
@@ -155,64 +153,69 @@ const ProductGridShopPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full px-5 pb-6">
             {loading
               ? Array.from({ length: productsPerPage }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="rounded-lg hover:shadow-lg overflow-hidden bg-white group pb-4 border"
-                  >
-                    <Skeleton height={300} />
-                    <div className="px-4">
-                      <Skeleton
-                        height={20}
-                        width={"60%"}
-                        className="mt-7 mb-2"
-                      />
-                      <Skeleton height={20} width={"40%"} />
-                      <Skeleton height={30} width={"80%"} className="mt-3" />
-                    </div>
+                <div
+                  key={index}
+                  className="rounded-lg hover:shadow-lg overflow-hidden bg-white group pb-4 border"
+                >
+                  <Skeleton height={300} />
+                  <div className="px-4">
+                    <Skeleton
+                      height={20}
+                      width={"60%"}
+                      className="mt-7 mb-2"
+                    />
+                    <Skeleton height={20} width={"40%"} />
+                    <Skeleton height={30} width={"80%"} className="mt-3" />
                   </div>
-                ))
+                </div>
+              ))
               : products?.map((product, index) => (
-                  <div
-                    key={index}
-                    className="rounded-lg hover:shadow-lg overflow-hidden bg-white group pb-4 border"
-                  >
-                    <div className="relative">
-                      <div className="h-[300px] overflow-hidden">
-                        <Link to={`/shop/${product?.slug}`}>
-                          <img
-                            src={product?.photos[0]}
-                            alt={product?.title}
-                            className="w-full group-hover:scale-105 transition-all ease-linear duration-300 h-full group rounded-none object-cover"
-                          />
-                        </Link>
-                      </div>
-                      {/* <div className="bg-primary group-hover:bg-secondary hover:text-primary border-primary border-2  transition-all ease-linear duration-150 text-white absolute right-4 -bottom-7 rounded-full border-4 border-white flex justify-center items-center w-16 h-16">
+                <div
+                  key={index}
+                  className="rounded-lg hover:shadow-lg overflow-hidden bg-white group pb-4 border"
+                >
+                  <div className="relative">
+                    <div className="h-[300px] overflow-hidden">
+                      <Link to={`/shop/${product?.slug}`}>
+                        <img
+                          src={product?.photos[0]}
+                          alt={product?.title}
+                          className="w-full group-hover:scale-105 transition-all ease-linear duration-300 h-full group rounded-none object-cover"
+                        />
+                      </Link>
+                    </div>
+                    {/* <div className="bg-primary group-hover:bg-secondary hover:text-primary border-primary border-2  transition-all ease-linear duration-150 text-white absolute right-4 -bottom-7 rounded-full border-4 border-white flex justify-center items-center w-16 h-16">
                         <p className="text-base uppercase font-medium">
                           {product?.size}
                         </p>
                       </div> */}
-                    </div>
-                    <div className="text-left px-4">
-                      <h2 className="font-medium text-[20px] mt-7 mb-2 capitalize flex justify-center">
-                        <Link to={`/shop/${product?.slug}`}>
-                          {product?.title}
-                        </Link>
-                      </h2>
-                      <p className="text-gray-600 text-[18px] flex justify-center">
-                        <FaBangladeshiTakaSign className="mr-1" />
-                        <span>{product?.price}</span>
-                      </p>
-                      <div className="flex  justify-between items-center mt-3">
-                        <button
-                          onClick={() => handleBuyNow(product)}
-                          className="rounded-full text-white bg-primary hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 px-4 py-1 text-sm w-full"
-                        >
-                          Order Now
-                        </button>
-                      </div>
+                  </div>
+                  <div className="text-left px-4">
+                    <p className="font-medium  line-clamp-3  hover:underline hover:text-blue-700  text-[0.75rem] md:text-[1rem]  mt-7 mb-2 capitalize flex justify-center">
+                      <Link to={`/shop/${product?.slug}`}>
+                        {product?.title}
+                      </Link>
+                    </p>
+                    {
+                      product.price && (
+                        <p className="text-[0.75rem] md:text-[1rem] font-bold text-[#00AEEF] flex justify-center">
+                          <FaBangladeshiTakaSign className="mr-1" />
+                          <span>{product?.price}</span>
+                        </p>
+                      )
+                    }
+
+                    <div className="flex  justify-between items-center mt-3">
+                      <button
+                        onClick={() => handleBuyNow(product)}
+                        className="rounded-full text-white bg-primary hover:bg-secondary hover:text-primary border-primary border-2 transition-all ease-linear duration-150 px-4 py-1 text-sm w-full"
+                      >
+                        Order Now
+                      </button>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
           </div>
         </div>
       ) : (
@@ -236,14 +239,14 @@ const ProductGridShopPage = () => {
                 <div className="col-span-12 md:col-span-8">
                   <Link
                     to={`/shop/${product?.slug}`}
-                    className="text-[24px] font-semibold text-text capitalize"
+                    className="font-medium line-clamp-3  hover:underline hover:text-blue-700  text-[0.75rem] md:text-[1rem] mt-7 mb-2 capitalize"
                   >
                     {product?.title}
                   </Link>
                   <p className="text-gray-600 text-[14px] line-clamp-3 leading-7 mt-5">
                     {product?.details.replace(/<\/?[^>]+(>|$)/g, "")}
                   </p>
-                  <p className="flex items-center text-[18px] mt-7">
+                  <p className="flex items-center text-[0.75rem] md:text-[1rem] font-bold text-[#00AEEF] mt-7">
                     <FaBangladeshiTakaSign className="inline-block mr-1" />
                     <span>{product?.price}</span>
                   </p>
@@ -269,7 +272,7 @@ const ProductGridShopPage = () => {
         </div>
       )}
 
-      {totalProducts > productsPerPage && (
+      {totalProducts >= productsPerPage && (
         <div className="flex justify-center mt-16 pt-12 pb-20">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}

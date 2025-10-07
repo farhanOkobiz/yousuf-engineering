@@ -13,7 +13,7 @@ const ContractForm = () => {
       subject: event.target.subject.value,
       message: event.target.Comment.value,
     };
-    // console.log(formdata);
+
     await api
       .post("/contacts", formdata)
       .then(function (response) {
@@ -49,6 +49,7 @@ const ContractForm = () => {
                         name="name"
                         placeholder="Your Name"
                         className="w-full px-3 py-3 md:py-5 border rounded-lg"
+                        required
                       />
                     </div>
                     <div className="mb-4 w-full">
@@ -57,6 +58,7 @@ const ContractForm = () => {
                         name="phone"
                         placeholder="Phone Number"
                         className="w-full px-3 py-3 md:py-5 border rounded-lg"
+                        required
                       />
                     </div>
                   </div>
@@ -67,6 +69,7 @@ const ContractForm = () => {
                         name="email"
                         placeholder="Email Address"
                         className="w-full px-3 py-3 md:py-5 border rounded-lg"
+                        required
                       />
                     </div>
                     <div className="mb-4  w-full">
@@ -75,6 +78,7 @@ const ContractForm = () => {
                         name="subject"
                         placeholder="Subject"
                         className="w-full px-3 py-3 md:py-5 border rounded-lg"
+                        required
                       />
                     </div>
                   </div>

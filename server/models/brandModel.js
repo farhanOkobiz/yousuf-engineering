@@ -10,7 +10,6 @@ const brandSchema = new Schema(
       unique: true,
       trim: true,
     },
-
     image: {
       type: String,
     },

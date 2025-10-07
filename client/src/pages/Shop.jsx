@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Containar from "../components/containar/Containar";
 // import Product from "../components/home/Product";
 // import BradCumbs from "../components/shared/BradCumbs";
@@ -21,39 +21,21 @@ import ProductList from "../components/shop/ProductList";
 // import { FaFilter } from "react-icons/fa6";
 
 const Shop = () => {
-  const swiperRef = useRef(null);
-  const [newRelease, setNewRelease] = useState([]);
+  // ...existing code...
   const [categoryList, setCategoryList] = useState([]);
   const [brandList, setBrandList] = useState([]);
-  const [deals, setDeals] = useState([]);
+  // ...existing code...
   const [isLoading, setIsLoading] = useState(true); // State for loading
   const location = useLocation();
   const [products, setProducts] = useState([]);
+  const [limit, setLimit] = useState(9);
   const isCategoryPath = location.pathname.startsWith("/shop/category");
   const isBrandPath = location.pathname.startsWith("/shop/brand");
 
   const categoryName = isCategoryPath ? location.pathname.split("/").pop() : "";
   const brandName = isBrandPath ? location.pathname.split("/").pop() : "";
 
-  const getBanners = async () => {
-    try {
-      const response = await api.get(`/banners`);
-      const groupedBanners = response?.data?.data?.doc.reduce((acc, banner) => {
-        const { bannerType } = banner;
-        if (!acc[bannerType]) {
-          acc[bannerType] = [];
-        }
-        acc[bannerType].push(banner);
-        return acc;
-      }, {});
-      setNewRelease(groupedBanners?.newRelease);
-      setDeals(groupedBanners?.deals);
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setIsLoading(false); // Set loading to false after fetching data
-    }
-  };
+  // ...existing code... (banners logic removed because currently unused)
 
   const getCategory = async () => {
     try {
@@ -73,25 +55,33 @@ const Shop = () => {
     }
   };
 
-  const getProducts = async () => {
+  const getProducts = useCallback(async (limitArg) => {
     setIsLoading(true);
     try {
-      const response = await api.get(`/products`);
-      setProducts(response.data?.data);
+      const response = await api.get(`/products?limit=${limitArg}`);
+
+      // API shape: { status, results, totalData, data: { doc: [...] } }
+      const docs = response.data?.data?.doc || [];
+      const results = response.data?.results ?? docs.length;
+      const totalData = response.data?.totalData ?? results;
+
+      // Store doc array plus metadata so UI can compare doc length vs totalData
+      setProducts({ doc: docs, results, totalData });
+
       setIsLoading(false);
     } catch (error) {
       console.error(error.message);
       setIsLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getCategory();
-    getBanners();
     getBrand();
-    getProducts();
-  }, []);
-    
+    // load first `limit` products on mount
+    getProducts(limit);
+  }, [getProducts, limit]);
+
   // const handlePrev = () => {
   //   if (swiperRef.current) {
   //     swiperRef.current.swiper.slidePrev();
@@ -204,7 +194,7 @@ const Shop = () => {
               <div className="sticky top-[88px]">
                 {/* Brand Filter */}
                 <div className="shadow-md">
-                  <div className="w-full bg-white border-l-2 border-t border-b border-r border-l-primary">
+                  <div className="w-full bg-[#00AEEF]  rounded-md ">
                     <div>
                       <h3 className="uppercase tracking-wide text-[18px] py-3.5 px-3 font-bold">
                         Brand
@@ -218,15 +208,14 @@ const Shop = () => {
                     brandList.map((item, index) => (
                       <Link
                         to={`/shop/brand/${item?.slug}`}
-                        className={`w-full ${
-                          item?.slug == lastSlug
-                            ? "bg-primary text-white"
-                            : "bg-white"
-                        }  border-l border-b border-r inline-block`}
+                        className={`w-full ${item?.slug == lastSlug
+                          ? "bg-primary text-white"
+                          : "bg-white"
+                          }  border-l border-b border-r inline-block`}
                         key={index}
                       >
                         <div>
-                          <h3 className="text-[16px] font-semibold uppercase py-3 px-3">
+                          <h3 className="text-[0.75rem] font-semibold uppercase py-3 px-3">
                             {item?.title}
                           </h3>
                         </div>
@@ -237,9 +226,9 @@ const Shop = () => {
 
                 {/* Category Filter */}
                 <div className="shadow-md mt-10">
-                  <div className="w-full bg-white border-l-2 border-t border-b border-r border-l-primary">
+                  <div className="w-full  bg-[#00AEEF] rounded-md ">
                     <div>
-                      <h3 className="uppercase tracking-wide text-[18px] py-3.5 px-3 font-bold">
+                      <h3 className="uppercase tracking-wide text-[1rem] py-3.5 px-3 font-bold">
                         Product Category
                       </h3>
                     </div>
@@ -251,15 +240,14 @@ const Shop = () => {
                     categoryList.map((item, index) => (
                       <Link
                         to={`/shop/category/${item?.slug}`}
-                        className={`w-full ${
-                          item?.slug == lastSlug
-                            ? "bg-primary text-white"
-                            : "bg-white"
-                        }  border-l border-b border-r inline-block`}
+                        className={`w-full ${item?.slug == lastSlug
+                          ? "bg-primary text-white"
+                          : "bg-white"
+                          }  border-l border-b border-r inline-block`}
                         key={index}
                       >
                         <div>
-                          <h3 className="text-[16px] font-semibold uppercase py-3 px-3">
+                          <h3 className="text-[0.75rem] font-semibold uppercase py-3 px-3">
                             {item?.title}
                           </h3>
                         </div>
@@ -276,7 +264,26 @@ const Shop = () => {
                 {isCategoryPath || isBrandPath ? (
                   <Outlet />
                 ) : (
-                  <ProductList products={products?.doc} loading={isLoading}  />
+                  <>
+                    <ProductList products={products?.doc} loading={isLoading} />
+
+                    <div className="flex justify-center py-6">
+                      {products?.doc && products?.totalData > (products?.doc?.length || 0) ? (
+                        <button
+                          onClick={() => {
+                            const nextLimit = limit + 9;
+                            setLimit(nextLimit);
+                          }}
+                          disabled={isLoading}
+                          className="px-4 py-2 bg-primary text-white rounded"
+                        >
+                          {isLoading ? "Loading..." : "Load more"}
+                        </button>
+                      ) : (
+                        <p className="text-gray-500">No more products</p>
+                      )}
+                    </div>
+                  </>
                 )}
               </div>
             </div>
