@@ -1,36 +1,37 @@
-import React from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Autoplay } from "swiper/modules"; // Import necessary Swiper modules
-import "swiper/css"; // Import core Swiper styles
-import "swiper/css/effect-fade"; // Import fade effect styles
+import { EffectFade, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
 
 import bradcumbImg1 from "../../assets/bardcumbs/5170.webp";
 import bradcumbImg2 from "../../assets/bardcumbs/12305.jpg";
 import bradcumbImg5 from "../../assets/bardcumbs/12305.webp";
 import bradcumbImg3 from "../../assets/bardcumbs/bg-9.webp";
 import bradcumbImg4 from "../../assets/bardcumbs/breadcrumb1.jpg";
+import aircondition from "../../assets/bardcumbs/header_air.png";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Containar from "../containar/Containar";
 
+// eslint-disable-next-line react/prop-types
 const BradCumbs = ({ title, brad, brad2, bradLink }) => {
-  const images = [bradcumbImg5, bradcumbImg1, bradcumbImg2, bradcumbImg3, bradcumbImg4];
+  const images = [bradcumbImg5, bradcumbImg1, bradcumbImg2, bradcumbImg3, bradcumbImg4, aircondition];
 
   return (
     <div>
-      {/* Swiper Component with fade effect and zoom-in background animation */}
       <Swiper
-        modules={[EffectFade, Autoplay]} // Add Autoplay module for automatic sliding
+        modules={[EffectFade, Autoplay]}
         effect="fade"
         loop={true}
         speed={2000}
-        autoplay={{ delay: 3000 }} // Slide every 3 seconds
+        autoplay={{ delay: 3000 }}
         className="relative bg-center bg-cover "
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="relative py-12 sm:py-28 overflow-hidden">
-              {/* Zooming Image */}
+
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
@@ -79,7 +80,7 @@ const BradCumbs = ({ title, brad, brad2, bradLink }) => {
       </Swiper>
 
       {/* Custom Zoom-in Animation for Image Only */}
-      <style jsx>{`
+      <style >{`
         @keyframes zoom-in {
           0% {
             transform: scale(1); /* Start at normal size */

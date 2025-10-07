@@ -5,33 +5,33 @@ import { GiSewingMachine } from "react-icons/gi";
 const topics = [
   {
     id: 1,
-    title: "High-Quality Machines",
+    title: "Premium HVAC Systems",
     description:
-      "Our sewing machines are built with precision and durability, ensuring seamless stitching for every project.",
+      "Our air conditioning systems are engineered with precision and reliability, ensuring optimal cooling performance for industrial and commercial environments.",
   },
   {
     id: 2,
-    title: "Affordable Pricing",
+    title: "Energy-Efficient Solutions",
     description:
-      "We provide premium sewing machines and accessories at competitive prices, making quality accessible to everyone.",
+      "We provide advanced VRF and VRV systems that deliver superior performance while reducing energy consumption and operational costs.",
   },
   {
     id: 3,
-    title: "Expert Maintenance",
+    title: "Expert Installation & Maintenance",
     description:
-      "Our expert team offers reliable maintenance services, ensuring your sewing machines perform at their best.",
+      "Our certified engineers offer professional installation and preventive maintenance services, ensuring your HVAC systems operate at peak efficiency.",
   },
   {
     id: 4,
-    title: "Innovative Technology",
+    title: "Industrial Chiller Expertise",
     description:
-      "We integrate the latest technology into our machines to meet modern sewing demands with efficiency and ease.",
+      "We specialize in high-capacity chiller solutions designed to meet the demanding cooling requirements of large-scale manufacturing and industrial facilities.",
   },
   {
     id: 5,
-    title: "Customer Support",
+    title: "24/7 Technical Support",
     description:
-      "Our dedicated support team is always ready to assist with any inquiries or technical issues you may encounter.",
+      "Our dedicated support team is available round-the-clock to assist with any technical issues, emergency repairs, or service inquiries.",
   },
 ];
 
@@ -44,7 +44,7 @@ const Chooseus = () => {
             <h4 className="text-md font-bold text-[#0083CB] uppercase mb-5">
               Why our clients love us
             </h4>
-            <h1 className="text-4xl font-semibold">Why you should choose Qutex</h1>
+            <h1 className="text-4xl font-semibold">Why you should choose YOUSUF ENGINEERING</h1>
           </div>
           {/* <div>
             <img

@@ -8,7 +8,7 @@ import { MdAccessTime } from "react-icons/md";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaUserPen } from "react-icons/fa6";
 import api from "../components/axios/Axios";
-import Skeleton from "react-loading-skeleton"; // Import skeleton loader
+import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const SingleBlogPage = () => {
@@ -222,7 +222,7 @@ const SingleBlogPage = () => {
                               <h4>{formatDateWithTime(blog?.createdAt).date}</h4>
                             </div>
                           </div>
-                          {/* <h4 className="mt-1">{blog?.author?.name}</h4> */}
+
                         </div>
                       </div>
                     </div>

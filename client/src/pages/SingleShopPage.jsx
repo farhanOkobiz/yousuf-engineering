@@ -187,11 +187,15 @@ const SingleShopPage = () => {
                 <div className="flex gap-1 text-2xl font-bold items-center my-5 text-primary">
                   {product ? (
                     <>
-                      <span className="">Price:</span>
-                      <FaBangladeshiTakaSign className="" />
-                      <span className="">
-                        {product.price}
-                      </span>
+                      {product.price && (<>
+                        <span className="">Price:</span>
+                        <FaBangladeshiTakaSign className="" />
+                        <span className="">
+                          {product.price}
+                        </span>
+                      </>
+                      )}
+
                     </>
                   ) : (
                     <>

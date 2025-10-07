@@ -1,4 +1,4 @@
-import { GiChestnutLeaf, GiSewingMachine } from "react-icons/gi";
+import { GiSewingMachine } from "react-icons/gi";
 import Containar from "../containar/Containar";
 import custom from "../../assets/About/Custom.jpg";
 import quality from "../../assets/About/Quality.jpg";
@@ -7,28 +7,28 @@ import research from "../../assets/About/Research.jpg";
 
 const workData = [
   {
-    title: "Custom Industrial Sewing Solutions",
+    title: "Custom HVAC Solutions",
     description:
-      "Qutex delivers tailor-made industrial sewing machine solutions designed to meet the specific needs of garment factories, upholstery businesses, and other industries.",
-    image: custom, // Replace with the appropriate image path
+      "Yousuf Engineering delivers tailor-made air conditioning and chiller solutions designed to meet the specific cooling requirements of garment factories, commercial buildings, and industrial facilities.",
+    image: custom,
   },
   {
-    title: "Innovation in Sewing Technology",
+    title: "Advanced Climate Control Technology",
     description:
-      "Qutex is at the forefront of sewing innovation, focusing on cutting-edge research to enhance speed, precision, and versatility in industrial sewing machines.",
-    image: research, // Replace with the appropriate image path
+      "Yousuf Engineering leverages cutting-edge VRF and VRV technology, focusing on energy efficiency, smart controls, and precision climate management for diverse applications.",
+    image: research,
   },
   {
-    title: "Proven Success Stories",
+    title: "Proven Track Record",
     description:
-      "Our industrial sewing machines have consistently delivered exceptional results, increasing productivity and reducing downtime in demanding production environments.",
-    image: quality, // Replace with the appropriate image path
+      "Our HVAC systems have consistently delivered exceptional performance, maintaining optimal temperatures and reducing energy costs in demanding industrial and commercial environments.",
+    image: quality,
   },
   {
-    title: "Uncompromised Quality Assurance",
+    title: "Uncompromised Service Excellence",
     description:
-      "At Qutex, every sewing machine undergoes stringent quality checks to ensure maximum durability, performance, and customer satisfaction.",
-    image: casee, // Replace with the appropriate image path
+      "At Yousuf Engineering, every installation undergoes rigorous quality checks and professional commissioning to ensure maximum efficiency, reliability, and customer satisfaction.",
+    image: casee,
   },
 ];
 
@@ -41,10 +41,10 @@ const WhatWeDo = () => {
             <GiSewingMachine className="inline-block text-[#0083CB] text-center w-10 h-10 mb-4" />
           </div>
           <h4 className="text-xl font-bold text-[#0083CB] text-center mb-10">
-            Welcome to <span className="text-primary">Qutex!</span>
+            Welcome to <span className="text-primary">YOUSUF ENGINEERING!</span>
           </h4>
           <h1 className="text-4xl text-center font-semibold mb-12">
-            Crafting Excellence in Sewing Machine Solutions
+            Engineering Excellence in Climate Control Solutions
           </h1>
         </div>
         <div>

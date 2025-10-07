@@ -1,11 +1,11 @@
 import Containar from "../components/containar/Containar";
-import thankyoulogo from "../assets/thank-you/thank-you_logo.jpg";
+// import thankyoulogo from "../assets/thank-you/thank-you_logo.jpg";
 import logo from "../assets/logo/logo.png";
 
 const Thankyou = () => {
   return (
     <div className="font-robo">
-      {/* Header Bar */}
+
       <div className="h-[89.4px]"></div>
 
       <Containar>
@@ -13,7 +13,7 @@ const Thankyou = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col items-center">
             {/* Brand Name */}
             <h1 className="text-5xl text-primary font-bold mb-6 tracking-tight">
-              Qutex
+              Yousuf Engineering
             </h1>
 
             {/* Thank You Message */}

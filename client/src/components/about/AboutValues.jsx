@@ -1,43 +1,43 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Containar from "../containar/Containar";
 
-const values = [
-  {
-    id: 1,
-    valuesType: "Expert",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
-    discription:
-      "Expertise and insightful evidence-based solutions are at the heart of everything we do. Expertise and insightful evidence-based solutions are at the heart of everything we do. Expertise and insightful evidence-based solutions are at the heart of everything we do. Expertise and insightful evidence-based solutions are at the heart of everything we do.",
-  },
-  {
-    id: 2,
-    valuesType: "Grounded",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
-    discription:
-      "Our teams and partners work closely with local communities, engaging them in every level of decision-making. Our teams and partners work closely with local communities, engaging them in every level of decision-making. Our teams and partners work closely with local communities, engaging them in every level of decision-making. Our teams and partners work closely with local communities, engaging them in every level of decision-making.",
-  },
-  {
-    id: 3,
-    valuesType: "Impactful",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
-    discription:
-      "We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments.",
-  },
-  {
-    id: 4,
-    valuesType: "Bold",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
-    discription:
-      "We model innovative approaches and are not afraid to challenge trategies that are failing. We model innovative approaches and are not afraid to challenge trategies that are failing. We model innovative approaches and are not afraid to challenge trategies that are failing.We model innovative approaches and are not afraid to challenge trategies that are failing.",
-  },
-];
+// const values = [
+//   {
+//     id: 1,
+//     valuesType: "Expert",
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
+//     discription:
+//       "Expertise and insightful evidence-based solutions are at the heart of everything we do. Expertise and insightful evidence-based solutions are at the heart of everything we do. Expertise and insightful evidence-based solutions are at the heart of everything we do. Expertise and insightful evidence-based solutions are at the heart of everything we do.",
+//   },
+//   {
+//     id: 2,
+//     valuesType: "Grounded",
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
+//     discription:
+//       "Our teams and partners work closely with local communities, engaging them in every level of decision-making. Our teams and partners work closely with local communities, engaging them in every level of decision-making. Our teams and partners work closely with local communities, engaging them in every level of decision-making. Our teams and partners work closely with local communities, engaging them in every level of decision-making.",
+//   },
+//   {
+//     id: 3,
+//     valuesType: "Impactful",
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
+//     discription:
+//       "We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments. We deliver long-lasting change for farmers, their families and their environments.",
+//   },
+//   {
+//     id: 4,
+//     valuesType: "Bold",
+//     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC5931DU1WQFwYz0I2LQ3HKAHpicjmiWPwyg&s",
+//     discription:
+//       "We model innovative approaches and are not afraid to challenge trategies that are failing. We model innovative approaches and are not afraid to challenge trategies that are failing. We model innovative approaches and are not afraid to challenge trategies that are failing.We model innovative approaches and are not afraid to challenge trategies that are failing.",
+//   },
+// ];
 
 const AboutValues = () => {
-  const [value, setValue] = useState(values[0]);
+  // const [value, setValue] = useState(values[0]);
 
-  const handelValues = (id) => {
-    setValue(values[id - 1]);
-  };
+  // const handelValues = (id) => {
+  //   setValue(values[id - 1]);
+  // };
   return (
     <div className="bg-[#FBF7F0] md:py-12">
       <Containar>
