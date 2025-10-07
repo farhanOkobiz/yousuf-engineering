@@ -86,9 +86,12 @@ const Navbar = () => {
             <div>
               <div className="flex gap-x-3 items-center">
                 <div className="h-[50px]">
-                  <Link to={"/"}>
+                  <h1 className=" text-blue-800 font-bold text-2xl">
+                    LOGO
+                  </h1>
+                  {/* <Link to={"/"}>
                     <img className="w-full h-full" src={logo} alt="Logo" />
-                  </Link>
+                  </Link> */}
                 </div>
                 {/* <div>
                   <Link

@@ -21,11 +21,10 @@ import ProductList from "../components/shop/ProductList";
 // import { FaFilter } from "react-icons/fa6";
 
 const Shop = () => {
-  // ...existing code...
+
   const [categoryList, setCategoryList] = useState([]);
   const [brandList, setBrandList] = useState([]);
-  // ...existing code...
-  const [isLoading, setIsLoading] = useState(true); // State for loading
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const [products, setProducts] = useState([]);
   const [limit, setLimit] = useState(9);
@@ -35,7 +34,7 @@ const Shop = () => {
   const categoryName = isCategoryPath ? location.pathname.split("/").pop() : "";
   const brandName = isBrandPath ? location.pathname.split("/").pop() : "";
 
-  // ...existing code... (banners logic removed because currently unused)
+
 
   const getCategory = async () => {
     try {
@@ -194,7 +193,7 @@ const Shop = () => {
               <div className="sticky top-[88px]">
                 {/* Brand Filter */}
                 <div className="shadow-md">
-                  <div className="w-full bg-[#00AEEF]  rounded-md ">
+                  <div className="w-full bg-[#00AEEF] mb-2 rounded-md ">
                     <div>
                       <h3 className="uppercase tracking-wide text-[18px] py-3.5 px-3 font-bold">
                         Brand
@@ -224,9 +223,8 @@ const Shop = () => {
                   )}
                 </div>
 
-                {/* Category Filter */}
                 <div className="shadow-md mt-10">
-                  <div className="w-full  bg-[#00AEEF] rounded-md ">
+                  <div className="w-full  bg-[#00AEEF] mb-2 rounded-md">
                     <div>
                       <h3 className="uppercase tracking-wide text-[1rem] py-3.5 px-3 font-bold">
                         Product Category

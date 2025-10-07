@@ -12,27 +12,20 @@ import NotFound from "./pages/NotFound";
 import Blogs from "./pages/Blogs";
 import EventPage from "./pages/EventPage";
 import SuccessStories from "./pages/SuccessStories";
-
 import Contact from "./pages/Contact";
-
 import Login from "./pages/Login";
 import RegistrationUser from "./pages/Registration";
 import Shop from "./pages/Shop";
-
 import SingleStoryPage from "./pages/SingleStoryPage";
 import SingleBlogPage from "./pages/SingleBlogPage";
 import SingleEventPage from "./pages/SingleEventPage";
-
 import CartDetails from "./pages/CartDetails";
-
 import SingleShopPage from "./pages/SingleShopPage";
 import UserProfile from "./pages/UserProfile";
-
 import CheckOut from "./pages/CheckOut";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Thankyou from "./pages/Thankyou";
 import ForgotPassword from "./pages/ForgotPassword";
-
 import VerifyEmail from "./pages/VerifyEmail";
 import ProductGridShopPage from "./components/shop/ProductGridShopPage";
 import CategoryShop from "./components/shop/CategoryShop";
@@ -60,7 +53,7 @@ const router = createBrowserRouter(
       <Route path="/thank-you" element={<Thankyou />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/forgotpassword" element={<Forgot />} />
-      <Route path="/resetPassword/:token" element={<ResetPassword/>} />
+      <Route path="/resetPassword/:token" element={<ResetPassword />} />
       <Route path="/gallery" element={<EventPage />} />
       <Route path="/gallery/:id" element={<SingleEventPage />} />
       <Route path="/login" element={<Login />} />
