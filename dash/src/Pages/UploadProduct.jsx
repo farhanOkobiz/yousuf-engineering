@@ -29,9 +29,9 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
-  const [photosToRemove, setPhotosToRemove] = useState([]); // Track photos to remove
+  const [photosToRemove, setPhotosToRemove] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false); // Loading state for the OK button
+  const [confirmLoading, setConfirmLoading] = useState(false);
   // console.log(products[0].specification, "products from product");
   // Fetch all products and categories
   useEffect(() => {
@@ -85,14 +85,11 @@ const Products = () => {
 
   // Handle create/edit
   const handleOk = async () => {
-    setConfirmLoading(true); // Set loading state to true
+    setConfirmLoading(true);
     try {
       const values = await form.validateFields();
-      console.log("This is", values);
       const formData = new FormData();
       const requiredFields = ["model", "advantages"];
-
-      // Validate required fields
       for (const field of requiredFields) {
         if (
           !values[field] ||
@@ -100,7 +97,7 @@ const Products = () => {
           values[field].includes("undefined")
         ) {
           message.error(`${field} is required and must have valid values.`);
-          return; // Stop submission if validation fails
+          return;
         }
       }
       // Append fields from the form
@@ -116,7 +113,6 @@ const Products = () => {
           const validItems = values[key].filter(
             (item) => item !== "undefined" && item.trim() !== ""
           );
-          console.log("leeee", validItems);
           if (validItems.length > 0) {
             validItems.forEach((item) => {
               formData.append(`${key}[]`, item);
@@ -139,15 +135,14 @@ const Products = () => {
         ...newPhotos,
       ];
 
-      // ** Check if the total photos exceed the limit (e.g., 4 photos) **
-      const MAX_PHOTOS = 4;
-      if (allPhotos.length > MAX_PHOTOS) {
-        message.error(`You can upload a maximum of ${MAX_PHOTOS} photos.`);
-        setConfirmLoading(false);
-        return;
-      }
 
-      // Append photos to formData
+      // const MAX_PHOTOS = 4;
+      // if (allPhotos.length >= MAX_PHOTOS) {
+      //   message.error(`You can upload a maximum of ${MAX_PHOTOS} photos.`);
+      //   setConfirmLoading(false);
+      //   return;
+      // }
+
       allPhotos.forEach((photo) => {
         if (photo) {
           formData.append("photos", photo);
@@ -156,7 +151,7 @@ const Products = () => {
 
       // Handle update or create
       if (editingProduct) {
-        formData.append("photosToRemove", photosToRemove); // Add photos to remove
+        formData.append("photosToRemove", photosToRemove);
         await axiosInstance.patch(
           `/products/${editingProduct.slug}`,
           formData,
@@ -176,11 +171,11 @@ const Products = () => {
       setIsModalOpen(false);
       form.resetFields();
       setFileList([]);
-      setPhotosToRemove([]); // Reset photos to remove
+      setPhotosToRemove([]);
     } catch (error) {
       message.error("Failed to save product");
     } finally {
-      setConfirmLoading(false); // Set loading state to false
+      setConfirmLoading(false);
     }
   };
 
@@ -200,8 +195,9 @@ const Products = () => {
     setEditingProduct(product);
     setIsModalOpen(true);
     setPhotosToRemove([]);
-    console.log(product.specification, "product from modal");
+
     if (product) {
+      // edit case
       form.setFieldsValue({
         ...product,
         model: product?.specification,
@@ -221,10 +217,14 @@ const Products = () => {
       setSelectedBrand(brand);
       fetchCategories(brand.slug);
     } else {
+      // create case
       form.resetFields();
       setFileList([]);
+      setSelectedBrand(null);
+      setCategories([]);
     }
   };
+
 
   const handleFileChange = ({ fileList }) => {
     setFileList(fileList); // This will keep track of selected files
@@ -327,7 +327,13 @@ const Products = () => {
       <Modal
         title={editingProduct ? "Edit Product" : "Create Product"}
         open={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
+        onCancel={() => {
+          setIsModalOpen(false);
+          setEditingProduct(null);
+          form.resetFields();
+          setFileList([]);
+          setPhotosToRemove([]);
+        }}
         onOk={handleOk}
         confirmLoading={confirmLoading}
         className="custom-modal"
