@@ -38,7 +38,7 @@ const WhatWeDo = () => {
       <Containar>
         <div>
           <div className="flex justify-center">
-            <GiSewingMachine className="inline-block text-[#0083CB] text-center w-10 h-10 mb-4" />
+            {/* <GiSewingMachine className="inline-block text-[#0083CB] text-center w-10 h-10 mb-4" /> */}
           </div>
           <h4 className="text-xl font-bold text-[#0083CB] text-center mb-10">
             Welcome to <span className="text-primary">YOUSUF ENGINEERING!</span>
