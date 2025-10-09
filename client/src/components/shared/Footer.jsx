@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import Containar from "../containar/Containar";
-import logo from "../../assets/logo/logo.png";
+import logo from "../../assets/logo/yousuf-logo.png";
 import { contactInfo, menulist, socialLink } from "../constants";
 import { Link, NavLink } from "react-router-dom";
 import "./footer.css";
@@ -15,8 +15,8 @@ const Footer = () => {
             <div className=" grid grid-cols-12 gap-y-4  md:gap-10">
               {/* Section 1 */}
               <div className="col-span-12 md:col-span-6 lg:col-span-4 h-auto">
-                <div className="w-[68px]">
-                  <img className="w-full" src={logo} />
+                <div className="w-full">
+                  <img className="w-32" src={logo} />
                 </div>
                 <h2 className="text-xl text-text font-bold mb-3 mt-5">
                   We Are Yousuf Engineering
