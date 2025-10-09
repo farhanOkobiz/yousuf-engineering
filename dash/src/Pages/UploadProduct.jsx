@@ -82,6 +82,13 @@ const Products = () => {
     const brand = brands.find((b) => b._id === brandId);
     setSelectedBrand(brand);
   };
+  const handleRemovePhoto = (file) => {
+    if (file.url) {
+      setPhotosToRemove((prev) => [...prev, file.url]);
+    }
+    setFileList((prevList) => prevList.filter((item) => item.uid !== file.uid));
+  };
+
 
   // Handle create/edit
   const handleOk = async () => {
@@ -226,9 +233,7 @@ const Products = () => {
   };
 
 
-  const handleFileChange = ({ fileList }) => {
-    setFileList(fileList); // This will keep track of selected files
-  };
+  const handleFileChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   // const handleRemovePhoto = (url) => {
   //   Modal.confirm({
@@ -430,11 +435,13 @@ const Products = () => {
               ))}
             </Select>
           </Form.Item>
-          Dynamic
-          <Form.Item label="Photos">
+          {`Dynamic `}
+          <Form.Item label="Photos (Max 4 Photos allowed)">
             <Upload
+              listType="picture"
               fileList={fileList}
               onChange={handleFileChange}
+              onRemove={handleRemovePhoto}
               multiple
               beforeUpload={() => false}
             >
