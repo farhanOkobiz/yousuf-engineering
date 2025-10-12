@@ -1,8 +1,8 @@
 import Containar from "../containar/Containar";
 import custom from "../../assets/About/custom.jpg";
-import quality from "../../assets/About/Quality.jpg";
-import casee from "../../assets/About/Case.jpg";
-import research from "../../assets/About/Research.jpg";
+import quality from "../../assets/About/quality.jpg";
+import casee from "../../assets/About/case.jpg";
+import research from "../../assets/About/research.jpg";
 
 const workData = [
   {
