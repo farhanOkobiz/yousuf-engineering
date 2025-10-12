@@ -24,7 +24,7 @@ import SingleShopPage from "./pages/SingleShopPage";
 import UserProfile from "./pages/UserProfile";
 import CheckOut from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
-import Thankyou from "./pages/Thankyou";
+import Thankyou from "./pages/ThankYou";
 import ForgotPassword from "./pages/ForgotPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import ProductGridShopPage from "./components/shop/ProductGridShopPage";
