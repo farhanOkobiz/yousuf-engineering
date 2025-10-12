@@ -81,7 +81,7 @@ const Navbar = () => {
   // Calculate the total quantity of items in the cart
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => { };
 
   const calculateSubtotal = () => {
     return cartItems
@@ -89,9 +89,9 @@ const Navbar = () => {
         (total, item) =>
           total +
           item?.quantity *
-            (item?.selectedOption?.discountValue > 0
-              ? Math.ceil(item?.selectedOption?.salePrice)
-              : item?.selectedOption?.price),
+          (item?.selectedOption?.discountValue > 0
+            ? Math.ceil(item?.selectedOption?.salePrice)
+            : item?.selectedOption?.price),
         0
       )
       ?.toFixed(0);
@@ -177,9 +177,8 @@ const Navbar = () => {
                 </li>
               ))}
               <li
-                className={`absolute ${
-                  categoryActive ? "left-0" : "left-full "
-                }   transition-all duration-300 ease-in-out top-0 w-full min-h-[500px] bg-white z-20`}
+                className={`absolute ${categoryActive ? "left-0" : "left-full "
+                  }   transition-all duration-300 ease-in-out top-0 w-full min-h-[500px] bg-white z-20`}
               >
                 <div>
                   <div className="">
@@ -206,12 +205,11 @@ const Navbar = () => {
                                 setCategoryActive(false);
                               }}
                               className="py-3.5 px-9 inline-block "
-                              to={`/shop/subcategory/${
-                                item?._id
-                              }/${encodeURIComponent(
-                                item?.title.replace(/\s+/g, "")
-                              )}`}
-                              // to={`/shop/subcategory/${item?._id}`}
+                              to={`/shop/subcategory/${item?._id
+                                }/${encodeURIComponent(
+                                  item?.title.replace(/\s+/g, "")
+                                )}`}
+                            // to={`/shop/subcategory/${item?._id}`}
                             >
                               {item?.title}
                             </Link>
@@ -343,7 +341,7 @@ const Navbar = () => {
 
               <div className="hidden md:flex text-gray-600 font-semibold text-xl">
                 {/* <Search /> */}
-                Welcome To Qutex
+                Welcome to Yousuf Engineering
               </div>
 
               <div className="hidden md:flex items-center space-x-4 text-gray-600">
@@ -353,7 +351,7 @@ const Navbar = () => {
                       Call Us Now
                     </p>
                     <a className="text-gray-600" href="tel:+8801914314909 ">
-                    01914314909
+                      01914314909
                     </a>
                   </div>
                   <div className="bg-[#eaeaec] w-10 h-10 rounded-full flex items-center justify-center">

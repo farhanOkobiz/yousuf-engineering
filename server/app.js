@@ -36,7 +36,7 @@ app.use(express.json({ limit: "50mb" }));
 
 app.use(monogoSanitize());
 
-app.get("/", (req, res) => res.send("Welcome to Qutex..!🌿"));
+app.get("/", (req, res) => res.send("Welcome to Yousuf Engineering!🌿"));
 app.use(routes);
 app.use(globalErrorMiddleware);
 

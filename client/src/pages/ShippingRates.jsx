@@ -15,7 +15,7 @@ const ShippingRates = () => {
           <div className="w-full max-w-3xl lg:max-w-6xl bg-white px-6 sm:px-10 py-10 sm:py-14 shadow-lg rounded-lg relative overflow-hidden">
             <div className="relative z-10">
               <p className="text-gray-700">
-                Welcome to Qutex . We offer shipping across the country and
+                Welcome to Yousuf Engineering . We offer shipping across the country and
                 around the world when you order online. Each order can only be
                 shipped to one address. If you need to send items to different
                 addresses, please place separate orders and pay for them

@@ -12,11 +12,11 @@ const AboutInfo = () => {
           {/* Welcome Section */}
           <div className="px-5 py-10 lg:px-20 lg:py-20 bg-gradient-to-b from-blue-100 to-gray-100 text-center">
             <h2 className="text-2xl lg:text-4xl font-bold">
-              Welcome to Qutex
+              Welcome to Yousuf Engineering
             </h2>
             <p className="mt-4 text-sm lg:text-base leading-relaxed max-w-3xl mx-auto">
               Discover top-quality sewing machines and accessories to bring your
-              creative ideas to life. At Qutex, we offer a wide range
+              creative ideas to life. At Yousuf Engineering, we offer a wide range
               of products designed to meet the needs of beginners and
               professionals alike.
             </p>
@@ -57,7 +57,7 @@ const AboutInfo = () => {
           <div className="px-5 py-10 lg:px-20 lg:py-20 bg-gradient-to-b from-green-100 to-gray-200 text-center">
             <h2 className="text-2xl lg:text-4xl font-bold">Why Choose Us?</h2>
             <p className="mt-4 text-sm lg:text-base leading-relaxed max-w-3xl mx-auto">
-              At Qutex, we are committed to providing exceptional
+              At Yousuf Engineering, we are committed to providing exceptional
               products and services that exceed your expectations.
             </p>
             <ul className="mt-8 space-y-4 text-left max-w-3xl mx-auto">

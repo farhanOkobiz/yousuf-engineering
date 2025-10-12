@@ -229,7 +229,7 @@ const Orders = () => {
               <div class="billing-section">
                 <div class="billing-info">
                   <p<strong><b>COMPANY:</b></strong></p>
-                <p>Qutex</p>
+                <p>Yousuf Engineering</p>
                 <p>+88 01914314909</p>
                 <p>tmcsbd.hss@gmail.com</p>
                 </div>
@@ -241,9 +241,8 @@ const Orders = () => {
                   <p>${order.name}</p>
                   <p>${order.phone}</p>
                   <p>${order.email}</p>
-                  <p>${order.streetAddress}, ${order.area}, ${
-      order.upazilla
-    }, ${order.district}, ${order.postCode}</p>
+                  <p>${order.streetAddress}, ${order.area}, ${order.upazilla
+      }, ${order.district}, ${order.postCode}</p>
                 </div>
                 <div class="order-info">
                   <p><strong>Invoice No.:</strong> ${order._id.slice(0, 6)}</p>
@@ -406,9 +405,8 @@ const Orders = () => {
         </div>
         <div class="billing-info-elements-down">
          <div>
-           <strong>Address:</strong> ${order.streetAddress}, ${order.area}, ${
-      order.upazilla
-    }, ${order.district}, ${order.postCode}
+           <strong>Address:</strong> ${order.streetAddress}, ${order.area}, ${order.upazilla
+      }, ${order.district}, ${order.postCode}
          </div>
          <div>
            <strong>Phone:</strong> ${order.phone}

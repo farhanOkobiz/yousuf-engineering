@@ -96,7 +96,7 @@ const Navbar = () => {
                     to={"/"}
                     className="text-[13px] md:text-[18px] xl:text-[24px] font-bold text-white"
                   >
-                    Qutex
+                    Yousuf Engineering
                   </Link>
                 </div> */}
               </div>

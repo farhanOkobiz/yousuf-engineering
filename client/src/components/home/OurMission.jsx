@@ -9,7 +9,7 @@ const OurMission = () => {
       <div className="mx-20 my-10">
         <h6 className="text-primary font-semibold">Our Mission</h6>
         <h2 className="text-lg font-bold">
-          Navigate the Future of Sewing with <br></br>Qutex
+          Navigate the Future of Sewing with <br></br>Yousuf Engineering
         </h2>
       </div>
     </div>

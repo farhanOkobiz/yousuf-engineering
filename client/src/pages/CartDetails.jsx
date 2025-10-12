@@ -97,12 +97,12 @@ const CartDetails = () => {
     // }
     navigate("/checkout");
   };
-  
+
 
   return (
     <div className="font-robo pb-20">
       <div className="h-[64px] sm:h-[83.4px] bg-[#f5f5f5] "></div>
-      <BradCumbs title="Qutex " brad="Cart"></BradCumbs>
+      <BradCumbs title="Yousuf Engineering " brad="Cart"></BradCumbs>
       <Containar>
         <div className="mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold my-10">Cart Details</h1>
@@ -172,13 +172,12 @@ const CartDetails = () => {
                                   <span className="text-center">
                                     {item.quantity >= 1000
                                       ? `${(item.quantity / 1000).toFixed(
-                                          3
-                                        )}` // Tons always show 3 decimals
-                                      : `${
-                                          item.quantity % 1 === 0
-                                            ? item.quantity
-                                            : item.quantity.toFixed(3)
-                                        }`}
+                                        3
+                                      )}` // Tons always show 3 decimals
+                                      : `${item.quantity % 1 === 0
+                                        ? item.quantity
+                                        : item.quantity.toFixed(3)
+                                      }`}
                                     {/* For kilograms, show whole number unless decimal exists */}
                                   </span>
                                   <span
@@ -191,7 +190,7 @@ const CartDetails = () => {
                                   </span>
                                 </div>
                                 <div>
-                                  {item.quantity >= 1000 ?  `Ton` : `Kg` }
+                                  {item.quantity >= 1000 ? `Ton` : `Kg`}
                                 </div>
                               </div>
                             </td>
