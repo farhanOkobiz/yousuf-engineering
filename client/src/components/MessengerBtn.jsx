@@ -40,14 +40,14 @@ const MessengerBtn = () => {
           </a>
 
           {/* WeChat */}
-          <a
+          {/* <a
             href="weixin://dl/chat?shahalam2935"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-green-400 text-white w-12 h-12 flex justify-center items-center rounded-full shadow-md hover:scale-110 transition duration-300"
           >
             <FaWeixin className="text-2xl" />
-          </a>
+          </a> */}
 
           {/* Telegram */}
           <a
