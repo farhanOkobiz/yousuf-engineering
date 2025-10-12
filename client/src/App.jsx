@@ -22,7 +22,7 @@ import SingleEventPage from "./pages/SingleEventPage";
 import CartDetails from "./pages/CartDetails";
 import SingleShopPage from "./pages/SingleShopPage";
 import UserProfile from "./pages/UserProfile";
-import CheckOut from "./pages/CheckOut";
+import CheckOut from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Thankyou from "./pages/Thankyou";
 import ForgotPassword from "./pages/ForgotPassword";
