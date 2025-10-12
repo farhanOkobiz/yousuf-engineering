@@ -1,6 +1,5 @@
-import { GiSewingMachine } from "react-icons/gi";
 import Containar from "../containar/Containar";
-import custom from "../../assets/About/Custom.jpg";
+import custom from "../../assets/About/custom.jpg";
 import quality from "../../assets/About/Quality.jpg";
 import casee from "../../assets/About/Case.jpg";
 import research from "../../assets/About/Research.jpg";
