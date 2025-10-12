@@ -28,7 +28,7 @@ exports.singupController = catchAsync(async (req, res) => {
   user.verificationTokenExpires = Date.now() + 10 * 24 * 60 * 60 * 1000; // Token valid for 10 days
   await user.save({ validateBeforeSave: false });
 
-  const url = `http://localhost:5173/verify?token=${verificationToken}`;
+  const url = `https://yousufengineering.com/verify?token=${verificationToken}`;
   await new Email(user, url).sendWelcome();
 
   createSendToken(user, 201, res);
