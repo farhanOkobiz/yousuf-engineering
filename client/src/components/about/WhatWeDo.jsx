@@ -6,29 +6,30 @@ import research from "../../assets/About/research.jpg";
 
 const workData = [
   {
-    title: "Custom HVAC Solutions",
+    title: "Chiller Repair Expertise",
     description:
-      "Yousuf Engineering delivers tailor-made air conditioning and chiller solutions designed to meet the specific cooling requirements of garment factories, commercial buildings, and industrial facilities.",
+      "Yousuf Engineering provides professional chiller repair and maintenance solutions, ensuring reliable cooling performance, energy efficiency, and long-term durability for commercial and industrial systems.",
     image: custom,
   },
   {
-    title: "Advanced Climate Control Technology",
+    title: "Washing Machine Servicing",
     description:
-      "Yousuf Engineering leverages cutting-edge VRF and VRV technology, focusing on energy efficiency, smart controls, and precision climate management for diverse applications.",
+      "Our expert technicians deliver efficient washing machine repair services, resolving complex mechanical and electrical issues to restore peak performance and extend appliance lifespan.",
     image: research,
   },
   {
-    title: "Proven Track Record",
+    title: "Refrigerator Repair Solutions",
     description:
-      "Our HVAC systems have consistently delivered exceptional performance, maintaining optimal temperatures and reducing energy costs in demanding industrial and commercial environments.",
+      "Yousuf Engineering offers dependable refrigerator repair and maintenance, ensuring consistent temperature control, improved energy efficiency, and enhanced reliability for daily operation.",
     image: quality,
   },
   {
-    title: "Uncompromised Service Excellence",
+    title: "Air Conditioner Maintenance",
     description:
-      "At Yousuf Engineering, every installation undergoes rigorous quality checks and professional commissioning to ensure maximum efficiency, reliability, and customer satisfaction.",
+      "We provide complete air conditioner repair and servicing, focusing on precise diagnostics, energy optimization, and sustained comfort across residential and commercial environments.",
     image: casee,
   },
+
 ];
 
 const WhatWeDo = () => {

@@ -22,8 +22,6 @@ const Orders = () => {
     details: null,
   });
 
-  // console.log(orders);
-
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -59,7 +57,6 @@ const Orders = () => {
   const handleDelete = async (orderId) => {
     setLoading(true);
     try {
-      // console.log("Deleteing Ordder Admin");
       await axiosInstance.delete(`/orders/${orderId}`);
       message.success("Order deleted successfully!");
       fetchOrders();
@@ -108,7 +105,7 @@ const Orders = () => {
       "Ninety",
     ];
 
-    if (num === 0) return ""; // Return empty instead of "Zero" in recursion
+    if (num === 0) return "";
     if (num < 10) return units[num];
     if (num >= 10 && num < 20) return teens[num - 10];
     if (num >= 20 && num < 100)
@@ -142,240 +139,109 @@ const Orders = () => {
     const amount = order.product.price;
     const AmountInWords = numberToWords(amount).trim();
 
-    const invoiceContentDemo = `
-          <html>
-            <head>
-              <title>Invoice</title>
-              <style>
-                body {
-                  font-family: Arial, sans-serif;
-                  margin: 40px;
-                  color: #333;
-                }
-                .header {
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  margin-bottom: 30px;
-                }
-                .header .logo {
-                  font-size: 2rem;
-                  font-weight: bold;
-                }
-                .header .invoice-title {
-                  font-size: 1.5rem;
-                  font-weight: bold;
-                }
-                .billing-section {
-                  display: flex;
-                  justify-content: space-between;
-                  margin-bottom: 20px;
-                }
-                .billing-info p, .order-info p {
-                  margin: 5px 0;
-                }
-                table {
-                  width: 100%;
-                  border-collapse: collapse;
-                  margin-bottom: 20px;
-                }
-                th, td {
-                  border: 1px solid #ccc;
-                  padding: 10px;
-                  text-align: left;
-                }
-                th {
-                  background-color: #f9f9f9;
-                }
-                .summary {
-                  text-align: right;
-                }
-                .summary p {
-                  margin: 5px 0;
-                  font-size: 1rem;
-                }
-                .total {
-                  font-size: 1.2rem;
-                  font-weight: bold;
-                }
-                .thank-you {
-                  margin-top: 50px;
-                  font-size: 1rem;
-                }
-                .company-info {
-                   margin-bottom: 20px;
-                   font-size: 1rem;
-                }
-                .invoice-details {
-                  margin-top: 50px;
-                  font-size: 1rem;
-                  text-align: center;
-                  font-weight: bold;
-                }
-              </style>
-            </head>
-            <body>
-              <div class="header">
-                <div class="logo">
-                  <img src="${logoImage}" alt="Company Logo" style="height: 50px;" />
-                </div>
-                <div class="invoice-title">INVOICE</div>
-              </div>
-    
-              <div class="invoice-details">
-                <p>Invoice</p>
-              </div>
-    
-              <div class="billing-section">
-                <div class="billing-info">
-                  <p<strong><b>COMPANY:</b></strong></p>
-                <p>Yousuf Engineering</p>
-                <p>+88 01914314909</p>
-                <p>tmcsbd.hss@gmail.com</p>
-                </div>
-              </div>
-    
-              <div class="billing-section">
-                <div class="billing-info">
-                  <p><strong>BILLED TO:</strong></p>
-                  <p>${order.name}</p>
-                  <p>${order.phone}</p>
-                  <p>${order.email}</p>
-                  <p>${order.streetAddress}, ${order.area}, ${order.upazilla
-      }, ${order.district}, ${order.postCode}</p>
-                </div>
-                <div class="order-info">
-                  <p><strong>Invoice No.:</strong> ${order._id.slice(0, 6)}</p>
-                  <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
-                </div>
-              </div>
-              
-              <table>
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                      <tr>
-                        <td>${order.product.title}</td>
-                        <td>${order.product.price} TK</td>
-                      </tr>
-                </tbody>
-              </table>
-    
-              <div class="thank-you">
-                <p><i>Thank you!</i></p>
-              </div>
-            </body>
-          </html>
-        `;
-
     const invoiceContent = `
     <html>
 <head>
   <title>.</title>
   <style>
   @page {
-            size: auto;
-            margin: 0;
-          }
-          @media print {
-            header, footer {
-              display: none;
-              visibility: hidden;
-            }
-          }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      color: #333;
+    size: auto;
+    margin: 0;
+  }
+  @media print {
+    header, footer {
+      display: none;
+      visibility: hidden;
     }
-    title {
-      color: white !important;  
-    }
-    .header {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      letter-spacing: 5px;
-    }
-    .sub-header {
-      text-align: center;
-      font-size: 1rem;
-      letter-spacing: 2px;
-    }
-    .invoice-box {
-      border: 2px solid #000;
-      padding: 15px;
-    }
-    .invoice-details {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      background-color: red;
-    }
-    .invoice-details-heading {
-      text-align: center;
-      margin: 10px 0;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #000;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #f9f9f9;
-    }
-    .total-section {
-      margin-top: 20px;
-      text-align: right;
-    }
-    .signature-section {
-        display: flex;
-        position: absolute;
-        bottom: 50px;
-        width: 100%;
-      }
-      .signature-box {
-        width: 30%;
-        text-align: center;
-        border-top: 1px solid #000;
-        padding-top: 5px;
-        margin-right: 20px;
-      }
-      .heading {
-        display: flex;
-        justify-content: center;
-      }
-      .heading-text {
-        font-size: 12px;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      .heading-text div {
-        margin-top: 2px
-      }
-      .billing-info {
-        text-transform: capitalize;
-      }
-      .billing-info-elements-down {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-      }
-      .product-amount {
-        margin: 40px 0px;
-      }
-      .product-condition {
-        text-align: center;
-      }
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    color: #333;
+  }
+  title {
+    color: white !important;  
+  }
+  .header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+  }
+  .sub-header {
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+  .invoice-box {
+    border: 2px solid #000;
+    padding: 15px;
+  }
+  .invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .invoice-details-heading {
+    text-align: center;
+    margin: 10px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #f9f9f9;
+  }
+  .total-section {
+    margin-top: 20px;
+    text-align: right;
+  }
+  .signature-section {
+    display: flex;
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+  }
+  .signature-box {
+    width: 30%;
+    text-align: center;
+    border-top: 1px solid #000;
+    padding-top: 5px;
+    margin-right: 20px;
+  }
+  .heading {
+    display: flex;
+    justify-content: center;
+  }
+  .heading-text {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .heading-text div {
+    margin-top: 2px
+  }
+  .billing-info {
+    text-transform: capitalize;
+  }
+  .billing-info-elements-down {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .product-amount {
+    margin: 40px 0px;
+  }
+  .product-condition {
+    text-align: center;
+  }
   </style>
 </head>
 <body>
@@ -384,13 +250,13 @@ const Orders = () => {
       <img src="${logoImage}" alt="Company Logo" style="height: 50px;" />
    </div>
    <div class="heading-text">
-     <div class="header">Total Machinery Bangladesh</div>
-     <div class="sub-header">Total Machinery & Chemical Supplier</div>
-     <div class="header-text"><b>Head Office:</b> 183/184 (1st Floor), Misco Super Market, Mirpur-1, Dhaka-1216</div>
-     <div class="header-text"><b>Sales & Service Center:</b> 841/A, Shah ali Bagh, Last Corner of Misco Super Market, Cell: 01818-772935</div>
-     <div class="header-text">Cell: 01914-314909, 01978-772935, E-mail: tmcsbd.hss@gmail.com</div>
-     <div class="header-text"><b>Chittagong Office:</b> 215, Port City Complex (Ground Floor), Dewanhat, Chittagong</div>
-     <div class="header-text">Cell: 01820144528, 01978772935, 01716173735, E-mail: shahalamtmcs@gmail.com</div>
+     <div class="header">YOUSUF ENGINEERING</div>
+     <div class="header-text"><b>Business Type:</b> Air Condition, VRF, VRV, Chiller Solution.</div>
+     <div class="header-text"><b>Contact Person:</b> S.N. Md. Yousuf Ali</div>
+     <div class="header-text"><b>Phone:</b> 01714-028-279</div>
+     <div class="header-text"><b>Email:</b> yousufengineering2024@gmail.com</div>
+     <div class="header-text"><b>Address:</b> 62/B North Pirerbag, 60ft, Mirpur, Dhaka-1216</div>
+     <div class="header-text"><b>WhatsApp:</b> 01714-028-279</div>
    </div>
   </div>
     <div class="invoice-details-heading"><strong>CHALLAN / BILL</strong></div>
@@ -405,13 +271,11 @@ const Orders = () => {
         </div>
         <div class="billing-info-elements-down">
          <div>
-           <strong>Address:</strong> ${order.streetAddress}, ${order.area}, ${order.upazilla
-      }, ${order.district}, ${order.postCode}
+           <strong>Address:</strong> ${order.streetAddress}, ${order.area}, ${order.upazilla}, ${order.district}, ${order.postCode}
          </div>
          <div>
            <strong>Phone:</strong> ${order.phone}
          </div>
-         
         </div>  
       </div>
     </div>
@@ -483,7 +347,6 @@ const Orders = () => {
         return paddedText.slice(-6).padStart(6, "0");
       },
     },
-
     {
       width: "20%",
       title: "Products",
@@ -526,41 +389,6 @@ const Orders = () => {
         </>
       ),
     },
-    // {
-    //   width: "10%",
-    //   title: "Total Cost",
-    //   dataIndex: "totalCost",
-    //   key: "totalCost",
-    // },
-    // {
-    //   width: "10%",
-    //   title: "Payment method",
-    //   dataIndex: "paymentMethod",
-    //   key: "paymentMethod",
-    //   render: (paymentMethod, record) =>
-    //     paymentMethod === "Bank" ? (
-    //       <span>
-    //         {paymentMethod}
-    //         <Tooltip title="View Bank Details">
-    //           <Button
-    //             type="link"
-    //             icon={<InfoCircleOutlined />}
-    //             onClick={() => showBankDetails(record.bankDetails)}
-    //           />
-    //         </Tooltip>
-    //       </span>
-    //     ) : (
-    //       paymentMethod
-    //     ),
-    // },
-    // {
-    //   width: "10%",
-    //   title: "Payment Status",
-    //   dataIndex: "paymentStatus",
-    //   key: "paymentStatus",
-    // },
-
-    // { title: "Order Status", dataIndex: "orderStatus", key: "orderStatus" },
     {
       width: "10%",
       title: "Action",

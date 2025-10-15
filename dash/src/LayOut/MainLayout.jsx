@@ -205,18 +205,20 @@ const MainLayout = () => {
           collapsible
           collapsed={collapsed}
         >
-          <div className="text-white mx-auto font-bold text-2xl w-[150px]  xl:h-[80px] leading-[80px] text-center rounded-full my-10 ">
+          <div className="text-white mx-auto font-bold text-2xl w-[150px]  xl:h-[100px] leading-[80px] text-center rounded-full my-10 ">
             <img src={logoImage} />
           </div>
-          <Menu
-            theme="dark"
-            className="text-white !font-bold"
-            onClick={({ key }) => handleMenuItemClick(key)}
-            defaultSelectedKeys={["sub1"]}
-            mode="inline"
-            selectedKeys={[selectedMenuItem]}
-            items={items}
-          />
+          <div>
+            <Menu
+              theme="dark"
+              className="text-white !font-bold mt-4"
+              onClick={({ key }) => handleMenuItemClick(key)}
+              defaultSelectedKeys={["sub1"]}
+              mode="inline"
+              selectedKeys={[selectedMenuItem]}
+              items={items}
+            />
+          </div>
         </Sider>
       )}
       {/* <Sider

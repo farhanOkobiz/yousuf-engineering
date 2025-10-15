@@ -360,8 +360,8 @@ const OrderHistory = () => {
                               >
                                 <span
                                   className={`font-semibold ${order.orderStatus === "Successful"
-                                      ? "text-green-500"
-                                      : "text-red-500"
+                                    ? "text-green-500"
+                                    : "text-red-500"
                                     }`}
                                 >
                                   {order.orderStatus}
