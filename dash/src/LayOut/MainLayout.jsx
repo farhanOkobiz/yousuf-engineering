@@ -175,8 +175,6 @@ const MainLayout = () => {
     getItem(" Blog category ", "7", <MdEmojiEvents />),
     getItem("blog","8", <MdEmojiEvents />),
     getItem(" Gallery", "13", <MdEmojiEvents />),
-    
-
     getItem(" Partners", "15", <FaUserFriends />),
     getItem("All Contact", "17", <MdContacts />),
     getItem("ADD Banner", "18", <GiKnightBanner />),
