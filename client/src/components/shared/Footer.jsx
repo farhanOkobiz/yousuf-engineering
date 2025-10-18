@@ -19,9 +19,8 @@ const Footer = () => {
                   <img className="w-24" src={logo} />
                 </div>
                 <p className=" text-lg font-semibold text-gray-700 uppercase">
-                  BEST SERVICE, BEST QUALITY
+                  FRIST SERVICE & BEST QUALITY
                 </p>
-
                 <h2 className="text-xl text-text font-bold mb-3 mt-5">
                   We Are Yousuf Engineering
                 </h2>

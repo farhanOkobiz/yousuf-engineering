@@ -86,7 +86,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center">
             <div>
               <div className="flex gap-x-3 items-center">
-                <div className="h-[50px]">
+                <div className="h-[60px]">
                   <Link to={"/"}>
                     <img className="w-full h-full" src={logo} alt="Logo" />
                   </Link>
@@ -104,7 +104,6 @@ const Navbar = () => {
                   >
                     Yousuf Engineering
                   </NavLink>
-
                   {/* <Link
                     to={"/"}
                     className="text-[12px] md:text-[14px] xl:text-[20px] font-bold"
