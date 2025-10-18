@@ -150,7 +150,7 @@ const ProductGridShopPage = () => {
 
       {gridOrList ? (
         <div className="mt-14">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full px-5 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full px-5 pb-6">
             {loading
               ? Array.from({ length: productsPerPage }).map((_, index) => (
                 <div

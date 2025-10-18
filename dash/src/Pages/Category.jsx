@@ -124,7 +124,7 @@ const Categories = () => {
       key: "title",
     },
     {
-      title: "Brand",
+      title: "Category",
       dataIndex: ["brand", "title"],
       key: "brand",
     },
@@ -150,7 +150,7 @@ const Categories = () => {
             className="mr-2"
           />
           <Popconfirm
-            title="Are you sure to delete this category?"
+            title="Are you sure to delete this brand?"
             onConfirm={() => handleDelete(record.slug)}
             okText="Yes"
             cancelText="No"
@@ -165,13 +165,13 @@ const Categories = () => {
   return (
     <div className="container mx-auto py-5">
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">All Category</h1>
+        <h1 className="text-2xl font-bold">All Brand</h1>
         <Button
           type="primary"
           icon={<PlusOutlined />}
           onClick={showCreateModal}
         >
-          Add Category
+          Add Brand
         </Button>
       </div>
 
@@ -179,7 +179,7 @@ const Categories = () => {
 
       {/* Create/Edit Modal */}
       <Modal
-        title={isEditMode ? "Edit Category" : "Create Category"}
+        title={isEditMode ? "Edit Brand" : "Create Brand"}
         visible={isModalVisible}
         onOk={handleCreateOrEdit}
         onCancel={() => setIsModalVisible(false)}
@@ -198,8 +198,8 @@ const Categories = () => {
 
           <Form.Item
             name="brand"
-            label="Brand"
-            rules={[{ required: true, message: "Please select a Brand" }]}
+            label="Category"
+            rules={[{ required: true, message: "Please select a Category" }]}
           >
             <Select>
               {brands.map((brand) => (

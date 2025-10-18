@@ -167,8 +167,8 @@ const MainLayout = () => {
   let items = [
     getItem(" All Users", "1", <UserOutlined />),
     getItem(" Orders", "2", <CiShop />),
-    getItem(" Category", "4", <BiCategory />),
-    getItem(" Brand", "3", <CiShoppingTag />),
+    getItem("Category", "3", <CiShoppingTag />),
+    getItem("Brand", "4", <BiCategory />),
     getItem(" Product", "5", <UploadOutlined />),
     getItem(" Services", "11", <RiCustomerService2Line />),
     getItem(" Blog category ", "7", <MdEmojiEvents />),

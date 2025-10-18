@@ -282,13 +282,13 @@ const Products = () => {
     },
     {
       title: "Category",
-      dataIndex: ["category", "title"],
-      key: "category",
+      dataIndex: ["brand", "title"],
+      key: "brand",
     },
     {
       title: "Brand",
-      dataIndex: ["brand", "title"],
-      key: "brand",
+      dataIndex: ["category", "title"],
+      key: "category",
     },
     {
       title: "Action",
@@ -413,27 +413,27 @@ const Products = () => {
             <ReactQuill />
           </Form.Item>
           <Form.Item
-            name="category"
+            name="brand"
             label="Category"
             rules={[{ required: true, message: "Please select a Category" }]}
-          >
-            <Select>
-              {categories.map((category) => (
-                <Select.Option key={category._id} value={category._id}>
-                  {category.title}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="brand"
-            label="Brand"
-            rules={[{ required: true, message: "Please select a Brand" }]}
           >
             <Select onChange={handleBrandChange}>
               {brands.map((brand) => (
                 <Select.Option key={brand._id} value={brand._id}>
                   {brand.title}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="category"
+            label="Brand"
+            rules={[{ required: true, message: "Please select a Brand" }]}
+          >
+            <Select>
+              {categories.map((category) => (
+                <Select.Option key={category._id} value={category._id}>
+                  {category.title}
                 </Select.Option>
               ))}
             </Select>

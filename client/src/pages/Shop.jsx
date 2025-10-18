@@ -21,7 +21,6 @@ import ProductList from "../components/shop/ProductList";
 // import { FaFilter } from "react-icons/fa6";
 
 const Shop = () => {
-
   const [categoryList, setCategoryList] = useState([]);
   const [brandList, setBrandList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +33,8 @@ const Shop = () => {
   const categoryName = isCategoryPath ? location.pathname.split("/").pop() : "";
   const brandName = isBrandPath ? location.pathname.split("/").pop() : "";
 
-
+  const [hoveredBrand, setHoveredBrand] = useState(null); // hover করা brand কে track করবে
+  const [hoverCategories, setHoverCategories] = useState([]); // hovered brand এর categories
 
   const getCategory = async () => {
     try {
@@ -94,6 +94,22 @@ const Shop = () => {
   // };
 
   const lastSlug = location.pathname.split("/").pop();
+
+  const handleBrandHover = async (brand) => {
+    setHoveredBrand(brand._id); // hovered brand
+    try {
+      const response = await api.get(`/brand/${brand.slug}/categories`);
+      setHoverCategories(response.data.data.categories);
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+      setHoverCategories([]);
+    }
+  };
+
+  const handleBrandLeave = () => {
+    setHoveredBrand(null);
+    setHoverCategories([]);
+  };
 
   return (
     <>
@@ -189,14 +205,14 @@ const Shop = () => {
           </div> */}
 
           <div className="grid grid-cols-12 gap-5">
-            <div className="col-span-3 hidden lg:block ">
+            <div className="col-span-4 hidden lg:block ">
               <div className="sticky top-[88px]">
                 {/* Brand Filter */}
                 <div className="shadow-md">
                   <div className="w-full bg-[#00AEEF] mb-2 rounded-md ">
                     <div>
                       <h3 className="uppercase tracking-wide text-[18px] py-3.5 px-3 font-bold">
-                        Brand
+                        Category
                       </h3>
                     </div>
                   </div>
@@ -205,29 +221,45 @@ const Shop = () => {
                     <Skeleton count={6} height={50} />
                   ) : (
                     brandList.map((item, index) => (
-                      <Link
-                        to={`/shop/brand/${item?.slug}`}
-                        className={`w-full ${item?.slug == lastSlug
-                          ? "bg-primary text-white"
-                          : "bg-white"
-                          }  border-l border-b border-r inline-block`}
+                      <div
                         key={index}
+                        onMouseEnter={() => handleBrandHover(item)}
+                        onMouseLeave={handleBrandLeave}
+                        className={`w-full ${
+                          item?.slug == lastSlug
+                            ? "bg-primary text-white"
+                            : "bg-white"
+                        } border-l border-b border-r inline-block relative`}
                       >
-                        <div>
-                          <h3 className="text-[0.75rem] font-semibold uppercase py-3 px-3">
-                            {item?.title}
-                          </h3>
-                        </div>
-                      </Link>
+                        <Link
+                          to={`/shop/brand/${item?.slug}`}
+                          className="block py-3 px-3 text-[0.75rem] font-semibold uppercase"
+                        >
+                          {item?.title}
+                        </Link>
+                        {hoveredBrand === item._id &&
+                          hoverCategories.length > 0 && (
+                            <div className="absolute left-full top-0 -ml-48 bg-white shadow-md border z-50 w-48">
+                              {hoverCategories.map((cat) => (
+                                <Link
+                                  key={cat._id}
+                                  to={`/shop/category/${cat.slug}`}
+                                  className="block py-2 pl-2 hover:bg-primary hover:text-white bg-gray-200 text-gray-900"
+                                >
+                                  {cat.title}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                      </div>
                     ))
                   )}
                 </div>
-
                 <div className="shadow-md mt-10">
                   <div className="w-full  bg-[#00AEEF] mb-2 rounded-md">
                     <div>
                       <h3 className="uppercase tracking-wide text-[1rem] py-3.5 px-3 font-bold">
-                        Product Category
+                        Brand
                       </h3>
                     </div>
                   </div>
@@ -238,10 +270,11 @@ const Shop = () => {
                     categoryList.map((item, index) => (
                       <Link
                         to={`/shop/category/${item?.slug}`}
-                        className={`w-full ${item?.slug == lastSlug
-                          ? "bg-primary text-white"
-                          : "bg-white"
-                          }  border-l border-b border-r inline-block`}
+                        className={`w-full ${
+                          item?.slug == lastSlug
+                            ? "bg-primary text-white"
+                            : "bg-white"
+                        }  border-l border-b border-r inline-block`}
                         key={index}
                       >
                         <div>
@@ -257,7 +290,7 @@ const Shop = () => {
                 {/* <PriceRange /> */}
               </div>
             </div>
-            <div className="col-span-12 lg:col-span-9 sm:col-span-12">
+            <div className="col-span-12 lg:col-span-8 sm:col-span-12">
               <div className="bg-white w-full">
                 {isCategoryPath || isBrandPath ? (
                   <Outlet />
@@ -266,7 +299,8 @@ const Shop = () => {
                     <ProductList products={products?.doc} loading={isLoading} />
 
                     <div className="flex justify-center py-6">
-                      {products?.doc && products?.totalData > (products?.doc?.length || 0) ? (
+                      {products?.doc &&
+                      products?.totalData > (products?.doc?.length || 0) ? (
                         <button
                           onClick={() => {
                             const nextLimit = limit + 9;

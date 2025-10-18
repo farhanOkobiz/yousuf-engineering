@@ -130,7 +130,7 @@ const Brand = () => {
             className="mr-2"
           />
           <Popconfirm
-            title="Are you sure to delete this brand?"
+            title="Are you sure to delete this category?"
             onConfirm={() => handleDelete(record.slug)}
             okText="Yes"
             cancelText="No"
@@ -145,21 +145,20 @@ const Brand = () => {
   return (
     <div className="container mx-auto py-5">
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">All Brand</h1>
+        <h1 className="text-2xl font-bold">All Category</h1>
         <Button
           type="primary"
           icon={<PlusOutlined />}
           onClick={showCreateModal}
         >
-          Add Brand
+          Add Category
         </Button>
       </div>
 
       <Table columns={columns} dataSource={brands} rowKey="_id" />
-
       {/* Create/Edit Modal */}
       <Modal
-        title={isEditMode ? "Edit Brand" : "Create Brand"}
+        title={isEditMode ? "Edit Category" : "Create Category"}
         visible={isModalVisible}
         onOk={handleCreateOrEdit}
         onCancel={() => setIsModalVisible(false)}
