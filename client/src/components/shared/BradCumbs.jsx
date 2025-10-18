@@ -4,19 +4,19 @@ import { EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import bradcumbImg1 from "../../assets/bardcumbs/5170.webp";
-import bradcumbImg2 from "../../assets/bardcumbs/12305.jpg";
-import bradcumbImg5 from "../../assets/bardcumbs/12305.webp";
-import bradcumbImg3 from "../../assets/bardcumbs/bg-9.webp";
-import bradcumbImg4 from "../../assets/bardcumbs/breadcrumb1.jpg";
-import aircondition from "../../assets/bardcumbs/header_air.png";
+import bradcumbImg1 from "../../assets/bardcumbs/1.png";
+// import bradcumbImg2 from "../../assets/bardcumbs/2.webp";
+// import bradcumbImg5 from "../../assets/bardcumbs/3.webp";
+// import bradcumbImg3 from "../../assets/bardcumbs/4.jpg";
+// import bradcumbImg4 from "../../assets/bardcumbs/5.jpg";
+// import aircondition from "../../assets/bardcumbs/6.jpg";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Containar from "../containar/Containar";
 
 // eslint-disable-next-line react/prop-types
 const BradCumbs = ({ title, brad, brad2, bradLink }) => {
-  const images = [bradcumbImg5, bradcumbImg1, bradcumbImg2, bradcumbImg3, bradcumbImg4, aircondition];
+  const images = [bradcumbImg1];
 
   return (
     <div>

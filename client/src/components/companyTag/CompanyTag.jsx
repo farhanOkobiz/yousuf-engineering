@@ -14,7 +14,7 @@ const CompanyTag = () => {
         </Link>
         <div className="max-w-[600px] text-center mx-auto">
           <h2 className="text-[36px] text-white font-robo font-semibold">
-            Qutex
+            Yousuf Engineering
           </h2>
           <p className="text-xl font-normal text-white mt-10 leading-[38px]">
             Essential Products for Every Farmer's Need: Your Trusted Source for

@@ -6,7 +6,7 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.name ? user.name.split(" ")[0] : "Admin";
     this.url = url;
-    this.from = `Qutex <${process.env.EMAIL_FROM}>`;
+    this.from = `Yousuf Engineering <${process.env.EMAIL_FROM}>`;
   }
 
   newTransport() {
@@ -36,12 +36,12 @@ module.exports = class Email {
 
   async sendWelcome() {
     const html = `
-      <h1>Welcome to the Qutex, ${this.firstName}!</h1>
+      <h1>Welcome to the Yousuf Engineering, ${this.firstName}!</h1>
       <p>We are excited to have you onboard.</p>
       <p>Click <a href="${this.url}">here</a> to get verified.</p>
     `;
 
-    await this.send(html, "Welcome to the Qutex Family!");
+    await this.send(html, "Welcome to the Yousuf Engineering Family!");
   }
 
   async sendPasswordReset() {
@@ -52,7 +52,7 @@ module.exports = class Email {
     <p><a href="${this.url}">Reset your password</a></p>
     <p>If you did not request a password reset, please ignore this email.</p>
     <p>Thanks,</p>
-    <p>The Qutex Team</p>
+    <p>The Yousuf Engineering Team</p>
   `;
 
     await this.send(
@@ -79,42 +79,39 @@ module.exports = class Email {
         </thead>
         <tbody>
           ${order?.products
-            .map((item) => {
-              const originalPrice = item?.product?.price;
-              const discountPrice = item?.product?.salePrice || originalPrice;
-              const discountAmount = originalPrice - discountPrice;
+        .map((item) => {
+          const originalPrice = item?.product?.price;
+          const discountPrice = item?.product?.salePrice || originalPrice;
+          const discountAmount = originalPrice - discountPrice;
 
-              const discountPercentage = (
-                (discountAmount / originalPrice) *
-                100
-              )?.toFixed(2);
+          const discountPercentage = (
+            (discountAmount / originalPrice) *
+            100
+          )?.toFixed(2);
 
-              const subtotal = discountPrice * item?.quantity;
+          const subtotal = discountPrice * item?.quantity;
 
-              return `
+          return `
               <tr>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${
-                  item?.product?.title
-                }</td>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${
-                  item?.quantity
-                } Kg.</td>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${
-                  item?.product?.size || "N/A"
-                }</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item?.product?.title
+            }</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item?.quantity
+            } Kg.</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item?.product?.size || "N/A"
+            }</td>
                 <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">৳ ${originalPrice?.toFixed(
-                  2
-                )}</td>
+              2
+            )}</td>
                 <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">৳ ${discountAmount?.toFixed(
-                  2
-                )} (${discountPercentage}%)</td>
+              2
+            )} (${discountPercentage}%)</td>
                 <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">৳ ${subtotal?.toFixed(
-                  2
-                )}</td>
+              2
+            )}</td>
               </tr>
             `;
-            })
-            .join("")}
+        })
+        .join("")}
         </tbody>
       </table>
       <p><strong>Sub-Total: ৳ ${order?.totalCost}</strong></p>
@@ -133,7 +130,7 @@ module.exports = class Email {
       <p>Current stock: <strong>${product.stock}</strong></p>
       <p>Please consider restocking the product to ensure availability for future orders.</p>
       <p>Thanks,</p>
-      <p>The Qutex System</p>
+      <p>The Yousuf Engineering System</p>
     `;
 
     await this.send(

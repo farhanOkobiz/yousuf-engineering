@@ -78,7 +78,7 @@ const ProductList = ({ products, loading }) => {
               >
                 <div className="relative">
                   <div className="h-[300px] overflow-hidden">
-                    <Link to={`/shop/${product?.slug}`}>
+                    <Link to={`/shop/${product?._id}`}>
                       <img
                         src={product?.photos[0]}
                         alt={product?.title}
@@ -128,7 +128,7 @@ const ProductList = ({ products, loading }) => {
               >
                 <div className="col-span-12 md:col-span-4">
                   <div className="w-full">
-                    <Link to={`/shop/${product?.slug}`}>
+                    <Link to={`/shop/${product?._id}`}>
                       <img src={product?.photos[0]} className="rounded-lg" />
                     </Link>
                   </div>

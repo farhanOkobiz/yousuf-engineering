@@ -71,7 +71,7 @@ const Event = () => {
       <Containar>
         <div className="sticky top-10">
           <div>
-            <h4 className="text-[22px] sm:text-[36px] font-semibold leading-8 sm:leading-[48px] mt-2.5 text-primary">
+            <h4 className="text-[22px] sm:text-[36px] font-semibold leading-8 sm:leading-[48px] mt-2.5 text-primary text-center">
               Our Gallery
             </h4>
           </div>

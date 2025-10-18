@@ -17,7 +17,7 @@ const {
 const router = express.Router();
 
 router.get("/", getAllProductsController);
-router.get("/:slug", getProductController);
+router.get("/:id", getProductController);
 
 router.use(protectMiddleware);
 router.use(restrictToMiddleware("admin"));
@@ -30,7 +30,7 @@ router.post(
 );
 
 router
-  .route("/:slug")
+  .route("/:id")
   .patch(
     uploadPhotoMiddleware(true),
     cloudinaryUploadMiddleware("product", "photos"),

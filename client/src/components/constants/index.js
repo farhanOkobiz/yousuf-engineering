@@ -52,7 +52,7 @@ export const socialLink = [
   {
     title: "Facebook",
     icon: FaFacebookF,
-    link: "https://www.facebook.com/profile.php?id=100054376337057 ",
+    link: "https://www.facebook.com/share/1Bes4M3gk8/",
     color: "#1877F2"
   },
   // {

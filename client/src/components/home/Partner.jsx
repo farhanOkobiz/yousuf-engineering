@@ -39,7 +39,7 @@ const Partner = () => {
               {partners?.doc?.length > 0 ? (
                 <div className="pt-5">
                   <Containar>
-                    <h2 className="text-[22px] sm:text-[36px] font-semibold leading-8 sm:leading-[48px] mt-16 text-primary">
+                    <h2 className="text-[22px] sm:text-[36px] font-semibold leading-8 sm:leading-[48px] mt-16 text-primary text-center">
                       Trusted Client of Yousuf Engineering
                     </h2>
                   </Containar>

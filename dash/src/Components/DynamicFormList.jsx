@@ -17,10 +17,10 @@ const DynamicFormList = ({ name, label, placeholder, rules }) => {
                   {/* Model Input Field */}
                   <div className="text-lg font-semibold mb-2">
                     Enter{" "}
-                    {name === "model" ? "Model Name" : `Advantage ${index + 1}`}
+                    {name === "model" ? "Model Name" : `Warranty ${index + 1}`}
                   </div>
 
-                  {/* Advantages List */}
+                  {/* Warranty List */}
                   {name !== "model" && (
                     <Form.Item
                       {...restModelField}
@@ -35,7 +35,7 @@ const DynamicFormList = ({ name, label, placeholder, rules }) => {
                             onClick={() => removeModel(index)}
                             danger
                           >
-                            Remove Advantage
+                            Remove Warranty
                           </Button>
                         }
                       />

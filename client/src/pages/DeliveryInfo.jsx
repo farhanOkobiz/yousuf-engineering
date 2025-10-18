@@ -17,7 +17,7 @@ const DeliveryInfo = () => {
           <div className="max-w-4xl mx-auto px-4 py-8">
             <h1 className="text-2xl font-bold mb-6">Delivery Info</h1>
             <p className="mb-4">
-              Here’s what you need to know about getting your order from Qutex
+              Here’s what you need to know about getting your order from Yousuf Engineering
               :
             </p>
             <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
@@ -62,7 +62,7 @@ const DeliveryInfo = () => {
               </p>
             </div>
             <p className="mt-6">
-              Thanks for choosing Qutex ! If you have any questions about your
+              Thanks for choosing Yousuf Engineering ! If you have any questions about your
               delivery, feel free to reach out to us.
             </p>
           </div>

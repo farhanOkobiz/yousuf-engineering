@@ -54,10 +54,10 @@ const Service = () => {
   return (
     <div className="bg-white font-robo">
       <Containar>
-        <div className="py-[60px] sm:py-[105px]">
+        <div className="py-[30px]">
           <div className="text-center relative">
             <div className="flex justify-center">
-              <img className="w-[70px]" src={leafIcon} alt="leaf-icon" />
+              <img className="w-[100px] md:w-[100px]" src={leafIcon} alt="leaf-icon" />
             </div>
             <div className="text-center my-7">
               <h5 className="text-[16px] sm:text-[21px] font-semibold mb-4 uppercase text-primary">
@@ -145,7 +145,7 @@ const Service = () => {
                       onClick={handlePrev}
                       className="z-10 hidden xl:block rounded-full p-2 absolute -translate-y-1/2 -left-10 top-[50%] bg-primary text-white"
                     >
-                      <FaChevronLeft />
+                      <FaChevronLeft /> 
                     </button>
                     <button
                       onClick={handleNext}
@@ -153,6 +153,7 @@ const Service = () => {
                     >
                       <FaChevronRight />
                     </button>
+              
                   </div>
                 ) : (
                   <p className="h-32 flex items-center justify-center text-2xl font-semibold text-primary">

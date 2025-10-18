@@ -54,9 +54,9 @@ exports.getAllProductsController = getAll(Product, ["category", "brand"]);
 // });
 
 exports.getProductController = catchAsync(async (req, res, next) => {
-  const { slug } = req.params;
+  const { id } = req.params;
 
-  const product = await Product.findOne({ slug })
+  const product = await Product.findById(id)
     .populate([
       {
         path: "category",
@@ -84,7 +84,8 @@ exports.getProductController = catchAsync(async (req, res, next) => {
 });
 
 exports.updateProductController = catchAsync(async (req, res, next) => {
-  const { slug } = req.params;
+  const { id } = req.params;
+
   const body = { ...req.body };
   body.specification = JSON.parse(body.model);
 
@@ -94,7 +95,9 @@ exports.updateProductController = catchAsync(async (req, res, next) => {
   }
 
   try {
-    const product = await Product.findOne({ slug });
+
+  const product = await Product.findById(id);
+    
     if (!product) {
       return next(new AppError("No product was found with that name!", 404));
     }
@@ -136,9 +139,9 @@ exports.updateProductController = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteProductController = catchAsync(async (req, res, next) => {
-  const { slug } = req.params;
+  const { id } = req.params;
 
-  const product = await Product.findOne({ slug });
+  const product = await Product.findById(id);
   if (!product) {
     return next(new AppError("No product was found with that name!", 404));
   }

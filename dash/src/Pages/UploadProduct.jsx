@@ -29,9 +29,9 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
-  const [photosToRemove, setPhotosToRemove] = useState([]); // Track photos to remove
+  const [photosToRemove, setPhotosToRemove] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false); // Loading state for the OK button
+  const [confirmLoading, setConfirmLoading] = useState(false);
   // console.log(products[0].specification, "products from product");
   // Fetch all products and categories
   useEffect(() => {
@@ -82,17 +82,20 @@ const Products = () => {
     const brand = brands.find((b) => b._id === brandId);
     setSelectedBrand(brand);
   };
+  const handleRemovePhoto = (file) => {
+    if (file.url) {
+      setPhotosToRemove((prev) => [...prev, file.url]);
+    }
+    setFileList((prevList) => prevList.filter((item) => item.uid !== file.uid));
+  };
 
   // Handle create/edit
   const handleOk = async () => {
-    setConfirmLoading(true); // Set loading state to true
+    setConfirmLoading(true);
     try {
       const values = await form.validateFields();
-      console.log("This is", values);
       const formData = new FormData();
-      const requiredFields = ["model", "advantages"];
-
-      // Validate required fields
+      const requiredFields = ["model", "warranty"];
       for (const field of requiredFields) {
         if (
           !values[field] ||
@@ -100,7 +103,7 @@ const Products = () => {
           values[field].includes("undefined")
         ) {
           message.error(`${field} is required and must have valid values.`);
-          return; // Stop submission if validation fails
+          return;
         }
       }
       // Append fields from the form
@@ -116,7 +119,6 @@ const Products = () => {
           const validItems = values[key].filter(
             (item) => item !== "undefined" && item.trim() !== ""
           );
-          console.log("leeee", validItems);
           if (validItems.length > 0) {
             validItems.forEach((item) => {
               formData.append(`${key}[]`, item);
@@ -139,15 +141,13 @@ const Products = () => {
         ...newPhotos,
       ];
 
-      // ** Check if the total photos exceed the limit (e.g., 4 photos) **
-      const MAX_PHOTOS = 4;
-      if (allPhotos.length > MAX_PHOTOS) {
-        message.error(`You can upload a maximum of ${MAX_PHOTOS} photos.`);
-        setConfirmLoading(false);
-        return;
-      }
+      // const MAX_PHOTOS = 4;
+      // if (allPhotos.length >= MAX_PHOTOS) {
+      //   message.error(`You can upload a maximum of ${MAX_PHOTOS} photos.`);
+      //   setConfirmLoading(false);
+      //   return;
+      // }
 
-      // Append photos to formData
       allPhotos.forEach((photo) => {
         if (photo) {
           formData.append("photos", photo);
@@ -156,14 +156,10 @@ const Products = () => {
 
       // Handle update or create
       if (editingProduct) {
-        formData.append("photosToRemove", photosToRemove); // Add photos to remove
-        await axiosInstance.patch(
-          `/products/${editingProduct.slug}`,
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
+        formData.append("photosToRemove", photosToRemove);
+        await axiosInstance.patch(`/products/${editingProduct._id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
         message.success("Product updated successfully!");
       } else {
         await axiosInstance.post("/products", formData, {
@@ -176,18 +172,18 @@ const Products = () => {
       setIsModalOpen(false);
       form.resetFields();
       setFileList([]);
-      setPhotosToRemove([]); // Reset photos to remove
+      setPhotosToRemove([]);
     } catch (error) {
       message.error("Failed to save product");
     } finally {
-      setConfirmLoading(false); // Set loading state to false
+      setConfirmLoading(false);
     }
   };
 
   // Handle delete
-  const handleDelete = async (slug) => {
+  const handleDelete = async (id) => {
     try {
-      await axiosInstance.delete(`/products/${slug}`);
+      await axiosInstance.delete(`/products/${id}`);
       message.success("Product deleted successfully!");
       fetchProducts();
     } catch (error) {
@@ -200,8 +196,9 @@ const Products = () => {
     setEditingProduct(product);
     setIsModalOpen(true);
     setPhotosToRemove([]);
-    console.log(product.specification, "product from modal");
+
     if (product) {
+      // edit case
       form.setFieldsValue({
         ...product,
         model: product?.specification,
@@ -221,14 +218,16 @@ const Products = () => {
       setSelectedBrand(brand);
       fetchCategories(brand.slug);
     } else {
+      // create case
       form.resetFields();
       setFileList([]);
+      setSelectedBrand(null);
+      setCategories([]);
     }
   };
 
-  const handleFileChange = ({ fileList }) => {
-    setFileList(fileList); // This will keep track of selected files
-  };
+  const handleFileChange = ({ fileList: newFileList }) =>
+    setFileList(newFileList);
 
   // const handleRemovePhoto = (url) => {
   //   Modal.confirm({
@@ -277,6 +276,11 @@ const Products = () => {
       key: "price",
     },
     {
+      title: "Previous price",
+      dataIndex: "discount",
+      key: "discount",
+    },
+    {
       title: "Category",
       dataIndex: ["category", "title"],
       key: "category",
@@ -297,7 +301,7 @@ const Products = () => {
           ></Button>{" "}
           <Popconfirm
             title="Are you sure to delete this product?"
-            onConfirm={() => handleDelete(record.slug)}
+            onConfirm={() => handleDelete(record._id)}
             okText="Yes"
             cancelText="No"
           >
@@ -327,7 +331,13 @@ const Products = () => {
       <Modal
         title={editingProduct ? "Edit Product" : "Create Product"}
         open={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
+        onCancel={() => {
+          setIsModalOpen(false);
+          setEditingProduct(null);
+          form.resetFields();
+          setFileList([]);
+          setPhotosToRemove([]);
+        }}
         onOk={handleOk}
         confirmLoading={confirmLoading}
         className="custom-modal"
@@ -364,6 +374,10 @@ const Products = () => {
           <Form.Item name="price" label="Price" rules={[]}>
             <Input type="number" />
           </Form.Item>
+          <Form.Item name="discount" label="Previous price" rules={[]}>
+            <Input type="number" placeholder="Previous price" />
+          </Form.Item>
+
           {/* <Form.Item
             name="stock"
             label="Stock"
@@ -382,11 +396,11 @@ const Products = () => {
             ]}
           />
           <DynamicFormList
-            name="advantages"
-            label="Advantages"
-            placeholder="Insert your advantages"
+            name="warranty"
+            label="Warranty"
+            placeholder="Insert your warranty"
             rules={[
-              { required: true, message: "Please insert your advantages!" },
+              { required: true, message: "Please insert your warranty!" },
             ]}
           />
           <Form.Item
@@ -397,19 +411,6 @@ const Products = () => {
             ]}
           >
             <ReactQuill />
-          </Form.Item>
-          <Form.Item
-            name="brand"
-            label="Brand"
-            rules={[{ required: true, message: "Please select a Brand" }]}
-          >
-            <Select onChange={handleBrandChange}>
-              {brands.map((brand) => (
-                <Select.Option key={brand._id} value={brand._id}>
-                  {brand.title}
-                </Select.Option>
-              ))}
-            </Select>
           </Form.Item>
           <Form.Item
             name="category"
@@ -424,11 +425,26 @@ const Products = () => {
               ))}
             </Select>
           </Form.Item>
-          Dynamic
-          <Form.Item label="Photos">
+          <Form.Item
+            name="brand"
+            label="Brand"
+            rules={[{ required: true, message: "Please select a Brand" }]}
+          >
+            <Select onChange={handleBrandChange}>
+              {brands.map((brand) => (
+                <Select.Option key={brand._id} value={brand._id}>
+                  {brand.title}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          {`Dynamic `}
+          <Form.Item label="Photos (Max 4 Photos allowed)">
             <Upload
+              listType="picture"
               fileList={fileList}
               onChange={handleFileChange}
+              onRemove={handleRemovePhoto}
               multiple
               beforeUpload={() => false}
             >

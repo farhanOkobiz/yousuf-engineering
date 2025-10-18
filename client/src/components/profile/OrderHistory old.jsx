@@ -80,12 +80,12 @@ const OrderHistory = () => {
     iframe.style.position = "absolute";
     iframe.style.top = "0";
     iframe.style.left = "0";
-  
+
     // Access the iframe document
     // const doc = iframe.contentWindow.document;
-  
+
     // Invoice HTML content
-     const invoiceContent = `
+    const invoiceContent = `
             <html>
               <head>
                 <title>Invoice</title>
@@ -172,7 +172,7 @@ const OrderHistory = () => {
                 <div class="billing-section">
                   <div class="billing-info">
                     <p<strong><b>COMPANY:</b></strong></p>
-                  <p>Qutex</p>
+                  <p>Yousuf Engineering</p>
                   <p>+88 01890011810</p>
                   <p>info@agroinfusion.com</p>
                   </div>
@@ -240,7 +240,7 @@ const OrderHistory = () => {
     printWindow.document.open();
     printWindow.document.write(invoiceContent);
     printWindow.document.close();
-  
+
     setTimeout(() => {
       printWindow.focus(); // Focus the print window before printing
       printWindow.print();  // Trigger the print dialog
@@ -256,19 +256,19 @@ const OrderHistory = () => {
     // doc.open();
     // doc.write(invoiceContent);
     // doc.close();
-  
+
     // // Print the invoice once the iframe loads
     // iframe.onload = () => {
     //   iframe.contentWindow.focus();
     //   iframe.contentWindow.print();
     // };
-  
+
     // // Remove the iframe after printing
     // iframe.contentWindow.onafterprint = () => {
     //   document.body.removeChild(iframe);
     // };
   };
-  
+
 
   if (error) return <div>{error}</div>;
 
@@ -382,8 +382,8 @@ const OrderHistory = () => {
                               >
                                 <span
                                   className={`font-semibold ${order.orderStatus === "Successful"
-                                      ? "text-green-500"
-                                      : "text-red-500"
+                                    ? "text-green-500"
+                                    : "text-red-500"
                                     }`}
                                 >
                                   {order.orderStatus}

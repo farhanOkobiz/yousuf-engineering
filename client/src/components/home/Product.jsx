@@ -24,7 +24,7 @@ const Product = () => {
   const dispatch = useDispatch();
   const [, setError] = useState(null);
   const navigate = useNavigate();
-  // const swiperRef = useRef(null); 
+  // const swiperRef = useRef(null);
   // const token = useSelector((state) => state.auth.token);
 
   const handleBuyNow = (product) => {
@@ -60,14 +60,14 @@ const Product = () => {
   // };
 
   return (
-    <div className="bg-[#FBF7F0] py-12 sm:pt-[110px] sm:pb-[130px] font-robo relative group">
+    <div className="bg-[#FBF7F0] py-12  font-robo relative group">
       <Containar>
         <div className="py-2 ">
           <div className="text-center">
             <div className="flex justify-center">
               <img
                 src={leafIcon}
-                className="w-[50px] sm:w-[70px]"
+                className="w-[100px] md:w-[100px] sm:w-[70px]"
                 alt="leaf-icon"
               />
             </div>
@@ -98,7 +98,7 @@ const Product = () => {
                                 className="rounded-lg overflow-hidden bg-white pb-4 group/edit flex flex-col justify-between"
                               >
                                 <div className="">
-                                  <Link to={`/shop/${product?.slug}`}>
+                                  <Link to={`/shop/${product?._id}`}>
                                     <img
                                       src={product?.photos[0]}
                                       alt={product?.title || "Product Image"}
@@ -113,19 +113,32 @@ const Product = () => {
                                       to={`/shop/${product?.slug}`}
                                       className="font-bold text-[1rem] line-clamp-3 mb-2 capitalize"
                                     >
-                                      <span className="text-[1rem]">{product?.title} </span>
+                                      <span className="text-[1rem]">
+                                        {product?.title}{" "}
+                                      </span>
                                     </Link>
-
-                                    <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-5">
-                                      {product?.price ? (
-                                        <>
-                                          <FaBangladeshiTakaSign className="inline" />
-                                          <span>{product?.price}</span>
-                                        </>
-                                      ) : (
-                                        <span>&nbsp;</span>
-                                      )}
-                                    </p>
+                                    <div className="flex items-center justify-center gap-4">
+                                      <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-5">
+                                        {product?.price ? (
+                                          <>
+                                            <FaBangladeshiTakaSign className="inline" />
+                                            <span>{product?.price}</span>
+                                          </>
+                                        ) : (
+                                          <span>&nbsp;</span>
+                                        )}
+                                      </p>
+                                      <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-5">
+                                        {product?.discount ? (
+                                          <>
+                                            <FaBangladeshiTakaSign className="inline" />
+                                            <span className="line-through text-red-500">{product?.discount}</span>
+                                          </>
+                                        ) : (
+                                          <span>&nbsp;</span>
+                                        )}
+                                      </p>
+                                    </div>
                                   </div>
                                   <div className="flex justify-between items-center mt-5">
                                     <button

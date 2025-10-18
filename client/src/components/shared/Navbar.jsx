@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import Containar from "../containar/Containar";
-import logo from "../../assets/logo/logoblack.png";
+import logo from "../../assets/logo/yousuf-logo.png";
 import { Link, NavLink, matchPath } from "react-router-dom";
 import { menulist } from "../constants";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -77,8 +77,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`transition-all duration-300 ease-in-out ${isSticky ? "bg-white" : "sm:bg-[rgba(0,0,0,0.11)] sm:backdrop-blur-[3%]"
-        } z-[9999] font-robo fixed left-0 top-0 w-full`}
+      className={`transition-all duration-300 ease-in-out ${
+        isSticky ? "bg-white" : "sm:bg-[rgba(0,0,0,0.11)] sm:backdrop-blur-[3%]"
+      } z-[9999] font-robo fixed left-0 top-0 w-full`}
     >
       <Containar>
         <div className="py-4">
@@ -86,31 +87,41 @@ const Navbar = () => {
             <div>
               <div className="flex gap-x-3 items-center">
                 <div className="h-[50px]">
-                  <h1 className=" text-blue-800 font-bold text-2xl">
-                    LOGO
-                  </h1>
-                  {/* <Link to={"/"}>
+                  <Link to={"/"}>
                     <img className="w-full h-full" src={logo} alt="Logo" />
+                  </Link>
+                </div>
+                <div>
+                  <NavLink
+                    to={"/"}
+                    className={({ isActive }) =>
+                      `text-[14px] xl:text-[16px] font-bold rounded flex items-center transition-all ease-linear duration-150 hover:text-primary ${
+                        isSticky
+                          ? "text-black" // scroll/sticky হলে black
+                          : "text-white" // normal অবস্থায় white
+                      }`
+                    }
+                  >
+                    Yousuf Engineering
+                  </NavLink>
+
+                  {/* <Link
+                    to={"/"}
+                    className="text-[12px] md:text-[14px] xl:text-[20px] font-bold"
+                  >
+                    Yousuf Engineering
                   </Link> */}
                 </div>
-                {/* <div>
-                  <Link
-                    to={"/"}
-                    className="text-[13px] md:text-[18px] xl:text-[24px] font-bold text-white"
-                  >
-                    Qutex
-                  </Link>
-                </div> */}
               </div>
             </div>
             <div className="hidden lg:flex items-center justify-center gap-x-3 xl:gap-x-10">
-              <ul className="flex space-x-4">
+              <ul className="flex space-x-4 lg:space-x-1">
                 {menulist.map((item, index) => (
                   <li key={index} className="flex">
                     {item?.title === "Hotline" ? (
                       <a
                         href={item?.link}
-                        className="bg-red-500 text-white text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:bg-red-600 transition-all ease-linear duration-150 flex flex-col items-center"
+                        className="bg-red-500 text-white text-[10px] lg:text-[12px] xl:text-[16px] font-bold px-4 py-2 rounded hover:bg-red-600 transition-all ease-linear duration-150 flex flex-col items-center"
                       >
                         <div className="flex">
                           {item?.icon && <item.icon className="mr-2" />}
@@ -124,8 +135,9 @@ const Navbar = () => {
                         className={({ isActive }) =>
                           isActive
                             ? `text-primary text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:text-primary transition-all ease-linear duration-150 flex items-center`
-                            : `${isSticky ? "text-gray-700" : "text-white"
-                            }  text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:text-primary transition-all ease-linear duration-150 flex items-center`
+                            : `${
+                                isSticky ? "text-gray-700" : "text-white"
+                              }  text-[14px] xl:text-[16px] font-bold px-4 py-2 rounded hover:text-primary transition-all ease-linear duration-150 flex items-center`
                         }
                       >
                         {item?.title}

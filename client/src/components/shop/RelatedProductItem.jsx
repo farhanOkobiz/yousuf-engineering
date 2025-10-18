@@ -120,7 +120,7 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
               <div className="relative">
                 <Link
                   className="overflow-hidden block h-[305px]"
-                  to={`/shop/${item?.slug}`}
+                  to={`/shop/${item?._id}`}
                 >
                   <img
                     src={item?.photos[0]}

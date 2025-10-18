@@ -178,7 +178,7 @@ const OrderHistory = () => {
       <div class="billing-section">
         <div class="billing-info">
           <p><strong>COMPANY:</strong></p>
-          <p>Qutex</p>
+          <p>Yousuf Engineering</p>
           <p>+88 01890011810</p>
           <p>info@agroinfusion.com</p>
         </div>
@@ -210,8 +210,8 @@ const OrderHistory = () => {
         </thead>
         <tbody>
           ${order.products
-            .map(
-              (product, index) => `
+        .map(
+          (product, index) => `
                 <tr>
                   <td>${product.product.title}</td>
                   <td>${product.quantity}</td>
@@ -220,8 +220,8 @@ const OrderHistory = () => {
                     ${product.quantity * product.product.salePrice} TK
                   </td>
                 </tr>`
-            )
-            .join('')}
+        )
+        .join('')}
         </tbody>
       </table>
 
@@ -336,13 +336,12 @@ const OrderHistory = () => {
                               <span>
                                 {product?.quantity >= 1000
                                   ? `${(product?.quantity / 1000).toFixed(
-                                      3
-                                    )} Ton`
-                                  : `${
-                                      product?.quantity % 1 === 0
-                                        ? product?.quantity
-                                        : product?.quantity?.toFixed(3)
-                                    } Kg`}
+                                    3
+                                  )} Ton`
+                                  : `${product?.quantity % 1 === 0
+                                    ? product?.quantity
+                                    : product?.quantity?.toFixed(3)
+                                  } Kg`}
                               </span>
                             </td>
                             {/* Unit Price */}
@@ -360,11 +359,10 @@ const OrderHistory = () => {
                                 className="border border-gray-300 px-4 py-2 text-center"
                               >
                                 <span
-                                  className={`font-semibold ${
-                                    order.orderStatus === "Successful"
-                                      ? "text-green-500"
-                                      : "text-red-500"
-                                  }`}
+                                  className={`font-semibold ${order.orderStatus === "Successful"
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                    }`}
                                 >
                                   {order.orderStatus}
                                 </span>

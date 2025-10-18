@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";  
+// import { useDispatch, useSelector } from "react-redux";
 import SinglePageBradCumbs from "../components/shared/SinglePageBradCumbs";
 import Containar from "../components/containar/Containar";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -54,8 +54,6 @@ const SingleShopPage = () => {
     navigate(`/checkout/${product?._id}`);
   };
 
-
-
   // const model = ["XYZ-123", "XYZ-456"];
   // const specifications = [
   //   { label: "Type", typeValue: ["aa", "bb"] },
@@ -63,6 +61,8 @@ const SingleShopPage = () => {
   //   { label: "Weight", typeValue: ["aa", "bb"] },
   //   { label: "Warranty", typeValue: ["aa", "bb"] },
   // ];
+
+  
 
   return (
     <div className="font-robo">
@@ -164,20 +164,20 @@ const SingleShopPage = () => {
                     </table>
                   </div>
 
-                  <div className="mt-5">
-                    <div className="text-2xl font-bold">Advantages:</div>
+                  <div className="mt-5 flex items-center gap-4">
+                    <div className="text-2xl font-bold">Warranty :</div>
                     <div>
-                      {product?.advantages &&
-                        Array.isArray(product.advantages) ? (
-                        <ul className="list-disc pl-5">
-                          {product.advantages.map((advantage, index) => (
-                            <li key={index} className="my-3">
-                              {advantage}
-                            </li>
+                      {product?.warranty &&
+                      Array.isArray(product.warranty) ? (
+                        <p className="list-disc">
+                          {product.warranty.map((warranty, index) => (
+                            <span key={index} className="my-3 mr-1">
+                              {warranty}
+                            </span>
                           ))}
-                        </ul>
+                        </p>
                       ) : (
-                        <p>No advantages available</p>
+                        <p>No warranty available</p>
                       )}
                     </div>
                   </div>
@@ -187,15 +187,13 @@ const SingleShopPage = () => {
                 <div className="flex gap-1 text-2xl font-bold items-center my-5 text-primary">
                   {product ? (
                     <>
-                      {product.price && (<>
-                        <span className="">Price:</span>
-                        <FaBangladeshiTakaSign className="" />
-                        <span className="">
-                          {product.price}
-                        </span>
-                      </>
+                      {product.price && (
+                        <>
+                          <span className="">Price:</span>
+                          <FaBangladeshiTakaSign className="" />
+                          <span className="">{product.price}</span>
+                        </>
                       )}
-
                     </>
                   ) : (
                     <>
@@ -242,7 +240,6 @@ const SingleShopPage = () => {
                   )}
                 </div>
               </div>
-
             </div>
           </div>
         </div>

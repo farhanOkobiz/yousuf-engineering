@@ -33,7 +33,7 @@ const ContractInfo = () => {
                 to={"mailto:tmcsbd.hss@gmail.com"}
                 className="text-gray-500 font-light text-base md:text-lg"
               >
-                yousufengineering2024@gmai.com. <br />
+                yousufengineering2024@gmail.com. <br />
               </Link>
             </div>
           </div>

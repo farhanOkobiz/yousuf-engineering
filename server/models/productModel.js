@@ -26,10 +26,13 @@ const productSchema = new Schema(
 
     price: {
       type: Number,
-      required: false
+      required: false,
     },
-
-    advantages: [
+    discount: {
+      type: Number,
+      required: false,
+    },
+    warranty: [
       {
         type: String,
       },
@@ -71,7 +74,6 @@ const productSchema = new Schema(
     timestamps: true,
   }
 );
-
 
 const Product = model("Product", productSchema);
 

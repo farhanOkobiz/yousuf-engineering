@@ -10,7 +10,7 @@ import {
 import { IoMdLogOut } from "react-icons/io";
 
 import { Button, Layout, Menu, theme, message } from "antd";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Home from "../Pages/DashBoardHome";
 import Order from "../Pages/Order";
 // import { Input } from "antd";
@@ -18,8 +18,8 @@ import UploadBanner from "../Pages/UploadBanner";
 import AddCategory from "../Pages/Category";
 import UploadProduct from "../Pages/UploadProduct";
 import AllProduct from "../Pages/AllProduct";
-import { useDispatch, } from "react-redux";
-import logoImage from "../../src/assets/logo.png";
+import { useDispatch } from "react-redux";
+import logoImage from "../../src/assets/yousuf-logo.png";
 import CreateBlog from "../Pages/CreateBlog";
 import AllBlog from "../Pages/AllBlog";
 import CreateStories from "../Pages/CreateStories";
@@ -32,7 +32,7 @@ import CreatePartners from "../Pages/CreatePartners";
 import AllPartners from "../Pages/AllPartners";
 import AllContact from "../Pages/AllContact";
 import Discount from "../Pages/Discount";
-import {  logoutUser } from "../Slices/userSlices";
+import { logoutUser } from "../Slices/userSlices";
 import { MdEmojiEvents } from "react-icons/md";
 import { CiShop, CiShoppingTag } from "react-icons/ci";
 import { BiCategory } from "react-icons/bi";
@@ -120,7 +120,7 @@ const MainLayout = () => {
     case "8":
       content = <AllBlog />;
       break;
-    
+
     case "9":
       content = <CreateStories />;
       break;
@@ -166,14 +166,13 @@ const MainLayout = () => {
 
   let items = [
     getItem(" All Users", "1", <UserOutlined />),
-
     getItem(" Orders", "2", <CiShop />),
-    getItem(" Brand", "3", <CiShoppingTag />),
     getItem(" Category", "4", <BiCategory />),
+    getItem(" Brand", "3", <CiShoppingTag />),
     getItem(" Product", "5", <UploadOutlined />),
     getItem(" Services", "11", <RiCustomerService2Line />),
     getItem(" Blog category ", "7", <MdEmojiEvents />),
-    getItem("blog","8", <MdEmojiEvents />),
+    getItem("blog", "8", <MdEmojiEvents />),
     getItem(" Gallery", "13", <MdEmojiEvents />),
     getItem(" Partners", "15", <FaUserFriends />),
     getItem("All Contact", "17", <MdContacts />),
@@ -203,18 +202,20 @@ const MainLayout = () => {
           collapsible
           collapsed={collapsed}
         >
-          <div className="text-white mx-auto font-bold text-2xl w-[80px] h-[50px] xl:h-[80px] leading-[80px] text-center rounded-full my-10 ">
+          <div className="text-white mx-auto font-bold text-2xl w-[70px]  xl:h-[50px] leading-[80px] text-center rounded-full my-10 ">
             <img src={logoImage} />
           </div>
-          <Menu
-            theme="dark"
-            className="text-white !font-bold"
-            onClick={({ key }) => handleMenuItemClick(key)}
-            defaultSelectedKeys={["sub1"]}
-            mode="inline"
-            selectedKeys={[selectedMenuItem]}
-            items={items}
-          />
+          <div>
+            <Menu
+              theme="dark"
+              className="text-white !font-bold mt-4"
+              onClick={({ key }) => handleMenuItemClick(key)}
+              defaultSelectedKeys={["sub1"]}
+              mode="inline"
+              selectedKeys={[selectedMenuItem]}
+              items={items}
+            />
+          </div>
         </Sider>
       )}
       {/* <Sider
