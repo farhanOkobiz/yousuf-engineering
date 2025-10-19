@@ -147,7 +147,7 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
                       {item?.price ? (
                         <>
                           <FaBangladeshiTakaSign className="inline" />
-                          <span className="md:text-xl">{item?.price}</span>
+                          <span >{item?.price}</span>
                         </>
                       ) : (
                         <span>&nbsp;</span>
@@ -157,7 +157,7 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
                       {item?.discount ? (
                         <>
                           <FaBangladeshiTakaSign className="inline" />
-                          <span className="line-through text-red-500 md:text-xl">
+                          <span className="line-through text-red-500 ">
                             {item?.discount}
                           </span>
                         </>

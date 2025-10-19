@@ -117,7 +117,7 @@ const Product = () => {
                                         {product?.title}{" "}
                                       </span>
                                     </Link>
-                                    <div className="flex items-center justify-center gap-4">
+                                    <div className="flex items-center gap-4">
                                       <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-5">
                                         {product?.price ? (
                                           <>
