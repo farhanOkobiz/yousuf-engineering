@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import api from "../axios/Axios";
 import { addToAgroCart } from "../../redux/slices/cart/agroCartSlice";
-import { useDispatch, } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // eslint-disable-next-line react/prop-types
 const RelatedProductItem = ({ slug, prevProductId }) => {
@@ -38,7 +38,7 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
   const handleBuyNow = (product) => {
     dispatch(addToAgroCart({ ...product, quantity: 1 }));
     // navigate("/checkout");
-    navigate(`/checkout/${product?._id}`)
+    navigate(`/checkout/${product?._id}`);
   };
 
   useEffect(() => {
@@ -142,10 +142,30 @@ const RelatedProductItem = ({ slug, prevProductId }) => {
                   <span className="font-bold "> {item?.title}</span>
                 </Link>
                 {item.price && (
-                  <p className="text-blue-800 font-bold text-[0.75rem]  md:text-[1rem]">
-                    <FaBangladeshiTakaSign className="inline-block" />{" "}
-                    {item?.price}
-                  </p>
+                  <div className="flex items-center gap-4">
+                    <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-3">
+                      {item?.price ? (
+                        <>
+                          <FaBangladeshiTakaSign className="inline" />
+                          <span className="md:text-xl">{item?.price}</span>
+                        </>
+                      ) : (
+                        <span>&nbsp;</span>
+                      )}
+                    </p>
+                    <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-3">
+                      {item?.discount ? (
+                        <>
+                          <FaBangladeshiTakaSign className="inline" />
+                          <span className="line-through text-red-500 md:text-xl">
+                            {item?.discount}
+                          </span>
+                        </>
+                      ) : (
+                        <span>&nbsp;</span>
+                      )}
+                    </p>
+                  </div>
                 )}
 
                 <div className="flex justify-start items-center mt-5">

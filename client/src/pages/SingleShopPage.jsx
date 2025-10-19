@@ -62,8 +62,6 @@ const SingleShopPage = () => {
   //   { label: "Warranty", typeValue: ["aa", "bb"] },
   // ];
 
-  
-
   return (
     <div className="font-robo">
       <div className="h-[68px] sm:h-[83.4px]"></div>
@@ -167,8 +165,7 @@ const SingleShopPage = () => {
                   <div className="mt-5 flex items-center gap-4">
                     <div className="text-2xl font-bold">Warranty :</div>
                     <div>
-                      {product?.warranty &&
-                      Array.isArray(product.warranty) ? (
+                      {product?.warranty && Array.isArray(product.warranty) ? (
                         <p className="list-disc">
                           {product.warranty.map((warranty, index) => (
                             <span key={index} className="my-3 mr-1">
@@ -188,11 +185,30 @@ const SingleShopPage = () => {
                   {product ? (
                     <>
                       {product.price && (
-                        <>
-                          <span className="">Price:</span>
-                          <FaBangladeshiTakaSign className="" />
-                          <span className="">{product.price}</span>
-                        </>
+                        <div className="flex items-center gap-4">
+                          <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-3">
+                            {product?.price ? (
+                              <>
+                                <FaBangladeshiTakaSign className="inline" />
+                                <span className="md:text-xl">{product?.price}</span>
+                              </>
+                            ) : (
+                              <span>&nbsp;</span>
+                            )}
+                          </p>
+                          <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-3">
+                            {product?.discount ? (
+                              <>
+                                <FaBangladeshiTakaSign className="inline" />
+                                <span className="line-through text-red-500 md:text-xl">
+                                  {product?.discount}
+                                </span>
+                              </>
+                            ) : (
+                              <span>&nbsp;</span>
+                            )}
+                          </p>
+                        </div>
                       )}
                     </>
                   ) : (

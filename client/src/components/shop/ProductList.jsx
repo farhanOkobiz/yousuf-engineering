@@ -45,19 +45,21 @@ const ProductList = ({ products, loading }) => {
         <div className="flex items-center gap-2">
           <div
             onClick={() => setGridOrList(true)}
-            className={`w-9 h-9 ${gridOrList
-              ? "bg-primary text-white"
-              : "bg-transparent border text-text"
-              } flex cursor-pointer justify-center items-center`}
+            className={`w-9 h-9 ${
+              gridOrList
+                ? "bg-primary text-white"
+                : "bg-transparent border text-text"
+            } flex cursor-pointer justify-center items-center`}
           >
             <BsGrid3X3GapFill className="w-5 h-5" />
           </div>
           <div
             onClick={() => setGridOrList(false)}
-            className={`w-9 h-9 border flex ${!gridOrList
-              ? "bg-primary text-white"
-              : "bg-transparent border text-text"
-              } cursor-pointer justify-center items-center`}
+            className={`w-9 h-9 border flex ${
+              !gridOrList
+                ? "bg-primary text-white"
+                : "bg-transparent border text-text"
+            } cursor-pointer justify-center items-center`}
           >
             <FaList className="w-5 h-5" />
           </div>
@@ -97,12 +99,30 @@ const ProductList = ({ products, loading }) => {
                     <Link to={`/shop/${product?.slug}`}>{product?.title}</Link>
                   </p>
                   {
-                    product?.price && <p className="text-[0.75rem] md:text-[1rem] font-bold text-[#00AEEF] flex items-center">
-                      <FaBangladeshiTakaSign className="mr-1" />
-                      <span>
-                        <span className="text-[0.75rem] font-semibold md:text-[1rem] text-[#00AEEF]"></span> {product?.price}
-                      </span>
-                    </p>
+                    <div className="flex items-center gap-4">
+                      <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-3">
+                        {product?.price ? (
+                          <>
+                            <FaBangladeshiTakaSign className="inline" />
+                            <span>{product?.price}</span>
+                          </>
+                        ) : (
+                          <span>&nbsp;</span>
+                        )}
+                      </p>
+                      <p className="flex items-center justify-center space-x-1 text-gray-600 text-[16px] mt-3">
+                        {product?.discount ? (
+                          <>
+                            <FaBangladeshiTakaSign className="inline" />
+                            <span className="line-through text-red-500">
+                              {product?.discount}
+                            </span>
+                          </>
+                        ) : (
+                          <span>&nbsp;</span>
+                        )}
+                      </p>
+                    </div>
                   }
 
                   <div className="flex justify-between items-center mt-3">
@@ -145,12 +165,15 @@ const ProductList = ({ products, loading }) => {
                     {product?.details.replace(/<\/?[^>]+(>|$)/g, "")}
                   </p>
 
-                  {product?.price && <p className="flex items-center text-[0.75rem] md:text-[1rem] text-blue-900 mt-5">
-                    <FaBangladeshiTakaSign className="inline-block mr-1" />
-                    <span>
-                      <span className="text-[0.75rem] md:text-[1rem] font-bold text-blue-900"></span> {product?.price}
-                    </span>
-                  </p>}
+                  {product?.price && (
+                    <p className="flex items-center text-[0.75rem] md:text-[1rem] text-blue-900 mt-5">
+                      <FaBangladeshiTakaSign className="inline-block mr-1" />
+                      <span>
+                        <span className="text-[0.75rem] md:text-[1rem] font-bold text-blue-900"></span>{" "}
+                        {product?.price}
+                      </span>
+                    </p>
+                  )}
                   <div className="flex items-center gap-x-2.5 mt-7">
                     <button
                       onClick={() => handleBuyNow(product)}
